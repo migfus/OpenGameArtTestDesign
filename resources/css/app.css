@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Anek+Latin:wght@100..800&family=Press+Start+2P&display=swap');
+
 @import 'tailwindcss';
 
 @theme {
@@ -21,4 +23,22 @@
 
     /* bg-white for white */
     --color-light-001: #fff;
+}
+
+:root {
+    --font-anek-latin: 'Anek Latin', sans-serif;
+    font-family: 'Anek Latin', sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-variation-settings: 'wdth' 100;
+}
+
+.anek-latin {
+    font-family: 'Anek Latin', sans-serif;
+}
+
+.press-start-2p-regular {
+    font-family: 'Press Start 2P', system-ui;
+    font-weight: 400;
+    font-style: normal;
 }
