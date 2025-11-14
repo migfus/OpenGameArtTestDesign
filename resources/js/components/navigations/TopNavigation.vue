@@ -33,5 +33,5 @@ import AppButton from '../form/AppButton.vue'
 import { ref } from 'vue'
 
 const search = ref('')
-const app_url = import.meta.env.VITE_APP_URL
+const app_url = window.location.origin
 </script>
