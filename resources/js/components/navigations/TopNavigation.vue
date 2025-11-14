@@ -3,7 +3,7 @@
         <!-- SECTION LEFT  -->
         <div class="flex gap-4 items-center">
             <RouterLink to="/" class="flex gap-4 items-center">
-                <img src="http://127.0.0.1:8000/images/icon.png" class="size-10 image-rendering-pixelated" style="image-rendering: pixelated" />
+                <img :src="`${app_url}/images/icon.png`" class="size-10 image-rendering-pixelated" style="image-rendering: pixelated" />
                 <p class="text-3xl anek-latin">OpenGameArt</p>
             </RouterLink>
 
@@ -33,4 +33,5 @@ import AppButton from '../form/AppButton.vue'
 import { ref } from 'vue'
 
 const search = ref('')
+const app_url = import.meta.env.VITE_APP_URL
 </script>
