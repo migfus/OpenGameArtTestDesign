@@ -2,8 +2,7 @@
     <div class="bg-dark-001 flex flex-col text-brand-200">
         <TopBanner />
         <TopNavigation />
-        <SideNavigation>Content Here</SideNavigation>
-        <RouterView />
+        <SideNavigation> <RouterView /></SideNavigation>
     </div>
 </template>
 

@@ -11,6 +11,6 @@
         tag="ul"
         ref="infinite"
     >
-      <slot></slot>
+        <slot></slot>
     </TransitionGroup>
 </template>

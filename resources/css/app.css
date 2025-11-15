@@ -42,3 +42,62 @@
     font-weight: 400;
     font-style: normal;
 }
+
+/* CUSTOM CSS */
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}
+.scrollbar-hide {
+    scrollbar-width: none;
+}
+
+.scroll-fade {
+    position: relative;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* shared pseudo styles */
+.scroll-fade::before,
+.scroll-fade::after {
+    content: '';
+    position: sticky;
+    left: 0;
+    right: 0;
+    height: 16px;
+    display: block;
+    pointer-events: none;
+    opacity: 1;
+    transition: opacity 180ms ease;
+    z-index: 2;
+}
+
+/* Top fade shadow */
+.scroll-fade::before {
+    top: 0;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), transparent);
+}
+
+/* Bottom fade shadow */
+.scroll-fade::after {
+    bottom: 0;
+    background: linear-gradient(to top, rgba(255, 255, 255, 0.1), transparent);
+}
+
+/* Hide top shadow when scrolled to top */
+.scroll-fade.at-top::before {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Hide bottom shadow when scrolled to bottom */
+.scroll-fade.at-bottom::after {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* If content doesn't scroll (both at-top and at-bottom), hide both */
+.scroll-fade.at-top.at-bottom::before,
+.scroll-fade.at-top.at-bottom::after {
+    opacity: 0;
+}

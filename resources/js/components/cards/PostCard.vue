@@ -1,5 +1,5 @@
 <template>
-    <div>Home Pgae</div>
+    <div>Post Card</div>
 </template>
 
 <script setup lang="ts"></script>

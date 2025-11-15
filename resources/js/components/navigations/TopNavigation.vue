@@ -1,7 +1,7 @@
 <template>
     <div class="bg-brand-950 px-6 py-2 font-semibold flex justify-between gap-2 text-brand-200 h-18 border-b border-brand-900">
         <!-- SECTION LEFT  -->
-        <div class="flex gap-4 items-center">
+        <div class="flex gap-4 items-center overflow-y-auto">
             <RouterLink to="/" class="flex gap-4 items-center">
                 <img :src="`${app_url}/images/icon.png`" class="size-10 image-rendering-pixelated" style="image-rendering: pixelated" />
                 <p class="text-3xl anek-latin">OpenGameArt</p>
