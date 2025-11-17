@@ -50,21 +50,21 @@
 
         <!-- SECTION: RIGHT -->
         <div class="flex gap-4 items-center">
-            <a href="https://www.patreon.com/opengameart" target="_blank" class="flex gap-1 items-center">
+            <a href="https://www.patreon.com/opengameart" target="_blank" class="gap-1 items-center hidden md:flex">
                 <img
                     src="https://plus.unsplash.com/premium_photo-1763034565065-9bd329f7e007?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHx0b3BpYy1mZWVkfDl8dG93SlpGc2twR2d8fGVufDB8fHx8fA%3D%3D"
                     class="size-4 rounded-full border border-light-001"
                 />
                 <p class="text-sm">@Dummy1</p>
             </a>
-            <a href="https://www.patreon.com/opengameart" target="_blank" class="flex gap-1 items-center">
+            <a href="https://www.patreon.com/opengameart" target="_blank" class="gap-1 items-center hidden md:flex">
                 <img
                     src="https://plus.unsplash.com/premium_photo-1763034565065-9bd329f7e007?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHx0b3BpYy1mZWVkfDl8dG93SlpGc2twR2d8fGVufDB8fHx8fA%3D%3D"
                     class="size-4 rounded-full border border-light-001"
                 />
                 <p class="text-sm">@DummyDemo2</p>
             </a>
-            <a href="https://www.patreon.com/opengameart" target="_blank" class="flex gap-1 items-center">
+            <a href="https://www.patreon.com/opengameart" target="_blank" class="gap-1 items-center hidden md:flex">
                 <img
                     src="https://plus.unsplash.com/premium_photo-1763034565065-9bd329f7e007?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHx0b3BpYy1mZWVkfDl8dG93SlpGc2twR2d8fGVufDB8fHx8fA%3D%3D"
                     class="size-4 rounded-full border border-light-001"
@@ -87,7 +87,8 @@
                         class="size-4 rounded-full border border-light-001"
                     />
                 </div>
-                <p class="text-sm">more...</p>
+                <p class="text-sm md:hidden">Recent Donators</p>
+                <p class="text-sm hidden md:flex">more...</p>
             </a>
         </div>
     </div>

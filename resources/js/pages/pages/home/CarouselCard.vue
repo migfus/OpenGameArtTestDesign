@@ -8,7 +8,7 @@
     <Carousel id="thumbnails" v-bind="thumbnailsConfig" v-model="currentSlide">
         <Slide v-for="image in images" :key="image.id">
             <template #default="{ currentIndex, isActive }">
-                <div :class="['thumbnail', { 'is-active': isActive }]" @click="slideTo(currentIndex)" class="rounded-2xl">
+                <div :class="['thumbnail', { 'is-active': isActive }]" @click="slideTo(currentIndex)" class="rounded">
                     <img :src="image.url" alt="Thumbnail Image" class="cursor-pointer rounded-2xl opacity-50" />
                 </div>
             </template>
