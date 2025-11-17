@@ -1,5 +1,10 @@
 <template>
-    <div class="bg-brand-950 px-6 py-2 font-semibold flex justify-between gap-2 text-brand-200 h-18 border-b border-brand-900">
+    <div
+        :class="[
+            'bg-brand-950 px-6 py-2 font-semibold flex justify-between gap-2 text-brand-200 h-18 border-b border-brand-900 overflow-hidden transition-all duration-500'
+        ]"
+        :style="{ height: `${top_hidden_model ? '0px' : '70px'}` }"
+    >
         <!-- SECTION LEFT  -->
         <div class="flex gap-4 items-center overflow-y-auto">
             <RouterLink to="/" class="flex gap-4 items-center">
@@ -31,6 +36,8 @@ import AppInput from '../form/AppInput.vue'
 import AppButton from '../form/AppButton.vue'
 
 import { ref } from 'vue'
+
+const top_hidden_model = defineModel<boolean>()
 
 const search = ref('')
 const app_url = window.location.origin

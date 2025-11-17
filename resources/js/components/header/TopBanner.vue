@@ -1,5 +1,10 @@
 <template>
-    <div class="bg-linear-to-r from-[#31575c] to-[#60458c] px-6 py-2 font-semibold flex justify-between gap-2 text-brand-50">
+    <div
+        :class="[
+            'bg-linear-to-r from-[#31575c] to-[#60458c] px-6 py-2 font-semibold flex justify-between gap-2 text-brand-50 sticky transition-all duration-500',
+            top_hidden_model ? '-translate-y-40' : 'translate-y-0'
+        ]"
+    >
         <!-- SECTION LEFT  -->
         <div class="flex gap-4 items-center">
             <a href="https://discord.com/invite/yDaQ4NcCux" target="_blank" class="flex gap-1 items-center">
@@ -90,4 +95,6 @@
 
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
+
+const top_hidden_model = defineModel<boolean>()
 </script>

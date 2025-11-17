@@ -1,7 +1,7 @@
 <template>
-    <div class="flex h-full">
+    <div :class="['flex h-full']">
         <!-- SECTION: Following -->
-        <div class="flex flex-col gap-2 h-[calc(100vh-7rem)] justify-between border-r border-brand-950 px-2 py-2 flex-none">
+        <div class="flex flex-col gap-2 h-min-[calc(100vh-7rem)] justify-between border-r border-brand-950 px-2 py-2 flex-none relative">
             <DataTransition class="flex flex-col gap-2">
                 <RouterLink v-for="item in following" to="/">
                     <img :src="item.image_url" class="size-10 rounded-xl" />
@@ -11,13 +11,13 @@
                 </RouterLink>
             </DataTransition>
 
-            <RouterLink to="/" class="bg-brand-950 flex justify-center items-center rounded-xl border border-brand-900 size-10">
+            <RouterLink to="/" class="bg-brand-950 flex justify-center items-center rounded-xl border border-brand-900 size-10 sticky bottom-2">
                 <Icon icon="heroicons:squares-2x2" class="size-6 text-brand-200" />
             </RouterLink>
         </div>
         <!-- SECTION: Navigations -->
-        <div class="flex flex-col gap-2 h-[calc(100vh-7rem)] justify-between border-r border-brand-950 px-2 py-2 w-60 flex-none">
-            <DataTransition class="flex flex-col gap-8 overflow-y-auto scrollbar-hide scroll-fade rounded-xl">
+        <div class="flex flex-col gap-2 h-min-[calc(100vh-7rem)] justify-between border-r border-brand-950 px-2 py-2 w-60 flex-none">
+            <DataTransition class="flex flex-col gap-8 overflow-y-auto scrollbar-hide rounded-xl">
                 <div v-for="(nav, idx) in navigations" :class="[idx == 0 ? '-mt-8' : '', 'flex flex-col gap-4 px-2']">
                     <p>{{ nav.name }}</p>
                     <RouterLink v-for="item in nav.links" :to="item.href" class="flex items-center gap-2 font-semibold">
@@ -35,13 +35,13 @@
                 </div>
             </DataTransition>
 
-            <RouterLink to="/" class="bg-brand-950 flex justify-between px-4 items-center rounded-xl border border-brand-900 h-10">
+            <RouterLink to="/" class="bg-brand-950 flex justify-between px-4 items-center rounded-xl border border-brand-900 h-10 sticky bottom-2">
                 <p>Settings</p>
                 <Icon icon="mdi:gear-outline" class="size-6 text-brand-200" />
             </RouterLink>
         </div>
         <!-- SECTION: Content -->
-        <div class="">
+        <div :class="['overflow-y-auto h-min-[calc(100vh-7rem)]']" ref="content_scroll">
             <slot></slot>
         </div>
     </div>
@@ -49,8 +49,12 @@
 
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
-import { watch } from 'vue'
+import { nextTick, onMounted, onUnmounted, useTemplateRef, watch } from 'vue'
 import DataTransition from '../transitions/DataTransition.vue'
+
+const $top_hidden_model = defineModel<boolean>()
+const content_scroll = useTemplateRef<HTMLElement>('content_scroll')
+let lastScrollY = window.scrollY
 
 const image_url =
     'https://images.unsplash.com/photo-1761838816945-021a4ebd67bc?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw0fHx8ZW58MHx8fHx8'
@@ -199,4 +203,35 @@ watch(
     },
     { immediate: true }
 )
+
+function handleScroll() {
+    if (content_scroll.value) {
+        const currentY = content_scroll.value.scrollTop
+        console.log('y:', currentY)
+
+        // Scroll down → hide navbar
+        if (currentY > lastScrollY && currentY > 50) {
+            $top_hidden_model.value = true
+        }
+        // Scroll up → show navbar
+        else {
+            $top_hidden_model.value = false
+        }
+
+        lastScrollY = currentY
+    }
+}
+onMounted(async () => {
+    await nextTick()
+    if (content_scroll.value) {
+        content_scroll.value.addEventListener('scroll', handleScroll, { passive: true })
+        console.log('Listener attached to content_scroll')
+    }
+})
+
+onUnmounted(() => {
+    if (content_scroll.value) {
+        content_scroll.value.removeEventListener('scroll', handleScroll)
+    }
+})
 </script>
