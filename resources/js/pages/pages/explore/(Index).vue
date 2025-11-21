@@ -1,17 +1,13 @@
 <template>
     <div class="flex flex-col gap-4">
-        <NotifyBanner />
-        <CarouselCard />
         <PostCaregorySection :posts="post_popular.posts" :title="post_popular.name" />
         <PostCaregorySection :posts="post_new_art.posts" :title="post_new_art.name" />
     </div>
 </template>
 
 <script setup lang="ts">
-import NotifyBanner from '@/components/header/NotifyBanner.vue'
-import CarouselCard from './CarouselCard.vue'
-import { Post } from './homeInterfaces'
-import PostCaregorySection from './PostCaregorySection.vue'
+import { Post } from '../home/homeInterfaces'
+import PostCaregorySection from '../home/PostCaregorySection.vue'
 
 const post_types: string[] = ['2D Art', '3D Art', 'Concept Art', 'Texture', 'Music', 'Sound Effects', 'Document']
 const user = {

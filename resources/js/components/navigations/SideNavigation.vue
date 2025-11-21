@@ -73,7 +73,7 @@
 
         <SideNavigationContent class="" />
         <!-- SECTION: Content -->
-        <div :class="['overflow-y-auto h-min-[calc(100vh-7rem)]']" ref="content_scroll">
+        <div :class="['overflow-y-auto h-min-[calc(100vh-7rem)] grow']" ref="content_scroll">
             <slot></slot>
         </div>
 

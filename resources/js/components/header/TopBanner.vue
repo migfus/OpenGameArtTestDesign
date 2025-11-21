@@ -6,8 +6,8 @@
         ]"
     >
         <!-- SECTION LEFT  -->
-        <div class="flex gap-4 items-center">
-            <a href="https://discord.com/invite/yDaQ4NcCux" target="_blank" class="flex gap-1 items-center">
+        <div class="flex gap-2 items-center">
+            <a href="https://discord.com/invite/yDaQ4NcCux" target="_blank" class="flex gap-1 items-center hover:bg-brand-950 px-2 rounded transition-all">
                 <div class="size-6">
                     <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -23,7 +23,7 @@
                 <p class="text-sm">Discord</p>
             </a>
 
-            <a href="https://www.patreon.com/opengameart" target="_blank" class="flex gap-1 items-center">
+            <a href="https://www.patreon.com/opengameart" target="_blank" class="flex gap-1 items-center hover:bg-brand-950 transition-all px-2 rounded">
                 <div class="size-4">
                     <svg
                         viewBox="0 0 600 600"
@@ -49,22 +49,34 @@
         </div>
 
         <!-- SECTION: RIGHT -->
-        <div class="flex gap-4 items-center">
-            <a href="https://www.patreon.com/opengameart" target="_blank" class="gap-1 items-center hidden md:flex">
+        <div class="flex items-center">
+            <a
+                href="https://www.patreon.com/opengameart"
+                target="_blank"
+                class="gap-1 items-center hidden md:flex hover:bg-brand-950 transition-all px-2 rounded"
+            >
                 <img
                     src="https://plus.unsplash.com/premium_photo-1763034565065-9bd329f7e007?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHx0b3BpYy1mZWVkfDl8dG93SlpGc2twR2d8fGVufDB8fHx8fA%3D%3D"
                     class="size-4 rounded-full border border-light-001"
                 />
                 <p class="text-sm">@Dummy1</p>
             </a>
-            <a href="https://www.patreon.com/opengameart" target="_blank" class="gap-1 items-center hidden md:flex">
+            <a
+                href="https://www.patreon.com/opengameart"
+                target="_blank"
+                class="gap-1 items-center hidden md:flex hover:bg-brand-950 transition-all px-2 rounded"
+            >
                 <img
                     src="https://plus.unsplash.com/premium_photo-1763034565065-9bd329f7e007?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHx0b3BpYy1mZWVkfDl8dG93SlpGc2twR2d8fGVufDB8fHx8fA%3D%3D"
                     class="size-4 rounded-full border border-light-001"
                 />
                 <p class="text-sm">@DummyDemo2</p>
             </a>
-            <a href="https://www.patreon.com/opengameart" target="_blank" class="gap-1 items-center hidden md:flex">
+            <a
+                href="https://www.patreon.com/opengameart"
+                target="_blank"
+                class="gap-1 items-center hidden md:flex hover:bg-brand-950 transition-all px-2 rounded"
+            >
                 <img
                     src="https://plus.unsplash.com/premium_photo-1763034565065-9bd329f7e007?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHx0b3BpYy1mZWVkfDl8dG93SlpGc2twR2d8fGVufDB8fHx8fA%3D%3D"
                     class="size-4 rounded-full border border-light-001"
@@ -72,7 +84,7 @@
                 <p class="text-sm">@DummyTest3</p>
             </a>
 
-            <a href="https://www.patreon.com/opengameart" target="_blank" class="flex gap-1 items-center">
+            <a href="https://www.patreon.com/opengameart" target="_blank" class="flex gap-1 items-center hover:bg-brand-950 transition-all px-2 rounded">
                 <div class="flex -space-x-2">
                     <img
                         src="https://plus.unsplash.com/premium_photo-1763034565065-9bd329f7e007?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHx0b3BpYy1mZWVkfDl8dG93SlpGc2twR2d8fGVufDB8fHx8fA%3D%3D"

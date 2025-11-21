@@ -9,14 +9,20 @@
     >
         <DataTransition class="flex flex-col gap-2">
             <RouterLink v-for="item in following" to="/">
-                <img :src="item.image_url" class="size-10 rounded-xl" />
+                <img :src="item.image_url" class="size-10 rounded-xl hover:ring-2 ring-brand-950 transition-all" />
             </RouterLink>
-            <RouterLink to="/" class="bg-brand-950 flex justify-center items-center rounded-xl border border-brand-900 size-10">
+            <RouterLink
+                to="/"
+                :class="['bg-brand-950 flex justify-center items-center rounded-xl border border-brand-900 size-10 hover:bg-dark-001 transition-all']"
+            >
                 <Icon icon="ic:baseline-plus" class="size-6 text-brand-200" />
             </RouterLink>
         </DataTransition>
 
-        <RouterLink to="/" class="bg-brand-950 flex justify-center items-center rounded-xl border border-brand-900 size-10 fixed bottom-2">
+        <RouterLink
+            to="/"
+            class="bg-brand-950 flex justify-center items-center rounded-xl border border-brand-900 size-10 fixed bottom-2 hover:bg-dark-001 transition-all"
+        >
             <Icon icon="memory:apps" class="size-6 text-brand-200" />
         </RouterLink>
     </div>
@@ -24,21 +30,32 @@
     <div
         :class="[
             on_mobile ? 'border-none' : 'hidden md:flex border-r',
-            'flex-col gap-2 h-min-[calc(100vh-7rem)] justify-between  border-brand-950 px-2 py-2 w-60 flex-none'
+            'flex-col gap-2 h-min-[calc(100vh-7rem)] justify-between  border-brand-950 py-2 w-60 flex-none'
         ]"
     >
-        <DataTransition class="flex flex-col gap-8 overflow-y-auto scrollbar-hide rounded-xl text-brand-200">
-            <div v-for="(nav, idx) in navigations" :class="[idx == 0 ? '-mt-8' : '', 'flex flex-col gap-4 px-2']">
+        <DataTransition class="flex flex-col gap-8 overflow-y-auto scrollbar-hide rounded-xl text-brand-200 pt-2">
+            <div v-for="(nav, idx) in navigations" :class="[idx == 0 ? '-mt-8' : '', 'flex flex-col gap-1 px-2 ']">
                 <p>{{ nav.name }}</p>
-                <RouterLink v-for="item in nav.links" :to="item.href" class="flex items-center gap-2 font-semibold">
+                <RouterLink
+                    v-for="item in nav.links"
+                    :to="{ name: item.name }"
+                    :class="[
+                        $route.name == item.name ? 'bg-brand-950' : '',
+                        'flex items-center gap-2 font-semibold hover:bg-brand-950 p-2 px-4 rounded-xl transition-all'
+                    ]"
+                >
                     <Icon :icon="item.icon" class="size-6 text-brand-200" />
-                    <p>{{ item.name }}</p>
+                    <p>{{ item.display_name }}</p>
                 </RouterLink>
             </div>
 
-            <div v-for="nav in other_links" class="flex flex-col gap-4 px-2">
-                <p>{{ nav.name }}</p>
-                <RouterLink v-for="item in nav.links" :to="item.href" class="flex items-center gap-2 font-semibold">
+            <div v-for="nav in other_links" class="flex flex-col gap-1 px-2">
+                <p class="mx-2">{{ nav.name }}</p>
+                <RouterLink
+                    v-for="item in nav.links"
+                    :to="item.href"
+                    class="flex items-center gap-2 font-semibold hover:bg-brand-950 px-4 py-2 rounded-xl transition-all"
+                >
                     <img :src="item.image_url" class="size-6 text-brand-200 rounded-full border border-brand-900" />
                     <p class="">{{ item.name }}</p>
                 </RouterLink>
@@ -49,7 +66,7 @@
             to="/"
             :class="[
                 on_mobile ? 'w-60' : 'w-56',
-                'bg-brand-950 flex justify-between px-4 items-center rounded-xl border border-brand-900 h-10 fixed bottom-2 text-brand-200'
+                'bg-brand-950 flex justify-between px-4 items-center rounded-xl border border-brand-900 h-10 fixed bottom-2 text-brand-200 ml-2 hover:bg-dark-001'
             ]"
         >
             <p>Settings</p>
@@ -61,10 +78,13 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
 import DataTransition from '../transitions/DataTransition.vue'
+import { useRoute } from 'vue-router'
 
 defineProps<{
     on_mobile?: boolean
 }>()
+
+const $route = useRoute()
 
 const following = [
     {
@@ -90,32 +110,38 @@ const navigations = [
         name: 'Explore',
         links: [
             {
-                name: 'Home',
+                name: 'home',
+                display_name: 'Home',
                 href: '/',
                 icon: 'memory:home-thatched'
             },
             {
-                name: 'Explore',
+                name: 'explore',
+                display_name: 'Explore',
                 href: '/',
                 icon: 'memory:search'
             },
             {
-                name: 'Personal Collection',
+                name: 'personal_collections',
+                display_name: 'Personal Collection',
                 href: '/',
                 icon: 'memory:heart'
             },
             {
-                name: 'Forums',
+                name: 'forums',
+                display_name: 'Forums',
                 href: '/',
                 icon: 'memory:chat'
             },
             {
-                name: 'FAQs',
+                name: 'faqs',
+                display_name: 'FAQs',
                 href: '/',
                 icon: 'memory:alpha-i'
             },
             {
-                name: 'Leaderboards',
+                name: 'leaderboards',
+                display_name: 'Leaderboards',
                 href: '/',
                 icon: 'memory:chart-bar'
             }

@@ -2,11 +2,11 @@
     <div class="fixed bg-dark-001/75 backdrop-blur-lg bottom-0 w-full gap-2">
         <RouterLink
             v-for="item in bottom_navigations"
-            :to="item.href"
-            :class="[false ? 'bg-brand-950' : 'hover:bg-brand-950', 'flex flex-col items-center py-2 flex-1 transition-all']"
+            :to="{ name: item.name }"
+            :class="[$route.name == item.name ? 'bg-brand-950' : 'hover:bg-brand-950', 'flex flex-col items-center py-2 flex-1 transition-all']"
         >
             <Icon :icon="item.icon" class="size-6" />
-            <p class="text-sm">{{ item.name }}</p>
+            <p class="text-sm">{{ item.display_name }}</p>
         </RouterLink>
 
         <div
@@ -21,27 +21,33 @@
 
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
+import { useRoute } from 'vue-router'
 
 const $sidebar_open_model = defineModel<boolean>()
+const $route = useRoute()
 
 const bottom_navigations = [
     {
-        name: 'Home',
+        display_name: 'Home',
+        name: 'home',
         icon: 'memory:home-thatched',
         href: ''
     },
     {
-        name: 'Explore',
+        name: 'explore',
+        display_name: 'Explore',
         icon: 'memory:search',
         href: ''
     },
     {
-        name: 'Forums',
+        name: 'forums',
+        display_name: 'Forums',
         icon: 'memory:chat',
         href: ''
     },
     {
-        name: 'Collections',
+        name: 'personal_collections',
+        display_name: 'Collections',
         icon: 'pixelarticons:heart',
         href: ''
     }

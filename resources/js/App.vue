@@ -5,6 +5,8 @@
         <SideNavigation v-model:top_navigation_hidden="top_navigation_hidden" v-model:show_side_navigation="show_side_navigation">
             <RouterView />
         </SideNavigation>
+
+        <WarningModal />
     </div>
 </template>
 
@@ -14,6 +16,7 @@ import TopNavigation from './components/navigations/TopNavigation.vue'
 import SideNavigation from './components/navigations/SideNavigation.vue'
 
 import { ref } from 'vue'
+import WarningModal from './components/modals/WarningModal.vue'
 
 const top_navigation_hidden = ref(false)
 const show_side_navigation = ref(false)

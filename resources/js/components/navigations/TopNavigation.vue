@@ -27,12 +27,16 @@
             <AppButton size="sm" icon="memory:plus" icon_only class="inline lg:hidden" />
             <AppButton size="sm" icon="memory:plus" class="lg:flex hidden">Submit Art</AppButton>
 
-            <Icon icon="memory:volume-high" class="size-6 text-brand-200" />
-            <Icon icon="memory:bell" class="size-7 text-brand-200" />
-            <img
-                src="https://images.unsplash.com/photo-1761839257046-84e95464cc52?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDF8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwxfHx8ZW58MHx8fHx8"
-                class="size-8 rounded-full border-2 border-brand-900"
-            />
+            <Icon icon="memory:volume-high" class="size-6 text-brand-200 transition-all rounded hover:bg-dark-001 cursor-pointer" />
+            <Icon icon="memory:bell" class="size-7 text-brand-200 transition-all rounded hover:bg-dark-001 cursor-pointer" />
+
+            <div class="relative cursor-pointer">
+                <img
+                    src="https://images.unsplash.com/photo-1761839257046-84e95464cc52?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDF8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwxfHx8ZW58MHx8fHx8"
+                    class="size-8 rounded-full ring-2 ring-brand-900 transition-all hover:ring-4 cursor-pointer"
+                />
+                <Icon icon="memory:chevron-down" class="size-4 absolute bottom-0 right-0 bg-dark-001 rounded" />
+            </div>
         </div>
     </div>
 </template>
@@ -45,7 +49,6 @@ import AppButton from '../form/AppButton.vue'
 import { ref } from 'vue'
 
 const $top_navigation_hidden = defineModel<boolean>('top_navigation_hidden', { required: true })
-const $show_side_navigation = defineModel<boolean>('show_side_navigation', { required: true })
 
 const search = ref('')
 const app_url = window.location.origin
