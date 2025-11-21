@@ -1,5 +1,6 @@
 <template>
     <div class="flex flex-col gap-4">
+        <SearchCard />
         <PostCaregorySection :posts="post_popular.posts" :title="post_popular.name" />
         <PostCaregorySection :posts="post_new_art.posts" :title="post_new_art.name" />
     </div>
@@ -8,6 +9,7 @@
 <script setup lang="ts">
 import { Post } from '../home/homeInterfaces'
 import PostCaregorySection from '../home/PostCaregorySection.vue'
+import SearchCard from './SearchCard.vue'
 
 const post_types: string[] = ['2D Art', '3D Art', 'Concept Art', 'Texture', 'Music', 'Sound Effects', 'Document']
 const user = {

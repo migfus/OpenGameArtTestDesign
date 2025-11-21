@@ -100,7 +100,7 @@ const buttonColor = computed(() => {
     }
     switch ($props.color) {
         case 'brand':
-            return 'bg-brand-600 hover:bg-brand-700 text-brand-50 focus:ring-brand-500 '
+            return 'bg-brand-900 hover:bg-brand-700 text-brand-50 focus:ring-brand-500 '
         case 'danger':
             return 'bg-red-50 text-red-700 hover:bg-red-100 focus:ring-red-500 '
         case 'transparent':

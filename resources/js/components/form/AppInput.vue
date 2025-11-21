@@ -13,7 +13,7 @@
                     injectCSS,
                     color == 'white' ? 'bg-white' : 'bg-dark-001',
                     error && 'border-red-500',
-                    'w-full rounded-xl border border-brand-900 placeholder-gray-400 focus:border-brand-500 focus:outline-none focus:ring-brand-500 h-8 py-4 px-3 text-brand-200 font-semibold'
+                    'w-full rounded-xl border border-brand-900 placeholder-brand-900 focus:border-brand-500 focus:outline-none focus:ring-brand-500 h-8 py-4 px-3 text-brand-200 font-semibold'
                 ]"
                 autocomplete="off"
             />
