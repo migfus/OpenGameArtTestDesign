@@ -7,10 +7,11 @@
     >
         <!-- SECTION LEFT  -->
         <div class="flex gap-4 items-center overflow-y-auto">
-            <Icon icon="stash:burger-classic" @click="$show_side_navigation = true" class="size-8 flex md:hidden cursor-pointer" />
             <RouterLink to="/" class="flex gap-4 items-center">
                 <img :src="`${app_url}/images/icon.png`" class="size-10 image-rendering-pixelated" style="image-rendering: pixelated" />
                 <p class="text-3xl anek-latin hidden md:flex">OpenGameArt</p>
+                <p class="absolute rotate-5 bg-yellow-900/75 px-20 hidden md:flex text-yellow-50 text-lg">Not Official</p>
+                <p class="absolute rotate-15 bg-yellow-900/75 text-yellow-50 md:hidden">Not Official</p>
             </RouterLink>
 
             <RouterLink to="/" class="gap-4 items-center hidden md:flex">
@@ -20,14 +21,14 @@
 
         <!-- SECTION: RIGHT -->
         <div class="flex gap-4 items-center">
-            <Icon icon="material-symbols:search" class="size-6 text-brand-200 inline lg:hidden" />
+            <Icon icon="memory:search" class="size-6 text-brand-200 inline lg:hidden" />
             <AppInput name="Search" v-model="search" noLabel placeholder="Search" class="hidden lg:flex" />
 
-            <AppButton size="sm" icon="ic:baseline-plus" icon_only class="inline lg:hidden" />
-            <AppButton size="sm" icon="ic:baseline-plus" class="lg:flex hidden">Submit Art</AppButton>
+            <AppButton size="sm" icon="memory:plus" icon_only class="inline lg:hidden" />
+            <AppButton size="sm" icon="memory:plus" class="lg:flex hidden">Submit Art</AppButton>
 
-            <Icon icon="tabler:volume" class="size-6 text-brand-200" />
-            <Icon icon="material-symbols:notifications-rounded" class="size-7 text-brand-200" />
+            <Icon icon="memory:volume-high" class="size-6 text-brand-200" />
+            <Icon icon="memory:bell" class="size-7 text-brand-200" />
             <img
                 src="https://images.unsplash.com/photo-1761839257046-84e95464cc52?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDF8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwxfHx8ZW58MHx8fHx8"
                 class="size-8 rounded-full border-2 border-brand-900"
