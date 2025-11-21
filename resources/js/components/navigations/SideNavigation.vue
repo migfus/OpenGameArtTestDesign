@@ -60,7 +60,7 @@
                                 </div>
 
                                 <div class="flex -mt-4">
-                                    <SideNavigationContent on_mobile />
+                                    <SideNavigationContent on_mobile @close_sidebar="$show_side_navigation = false" />
                                 </div>
                             </div>
                         </DialogPanel>

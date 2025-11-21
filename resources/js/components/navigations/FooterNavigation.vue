@@ -1,5 +1,5 @@
 <template>
-    <div class="fixed bg-dark-001/75 backdrop-blur-lg bottom-0 w-full gap-2">
+    <div :class="[showFooter ? 'translate-y-0' : 'translate-y-full', 'fixed bg-dark-001/75 backdrop-blur-lg bottom-0 w-full gap-2 transition-all']">
         <RouterLink
             v-for="item in bottom_navigations"
             :to="{ name: item.name }"
@@ -21,6 +21,7 @@
 
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
+import { onBeforeUnmount, onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
 
 const $sidebar_open_model = defineModel<boolean>()
@@ -52,4 +53,24 @@ const bottom_navigations = [
         href: ''
     }
 ]
+
+const showFooter = ref(true)
+let lastScroll = 0
+
+const handleScroll = () => {
+    const current = window.scrollY
+
+    if (current > lastScroll) {
+        // scrolling down → hide
+        showFooter.value = false
+    } else {
+        // scrolling up → show
+        showFooter.value = true
+    }
+
+    lastScroll = current
+}
+
+onMounted(() => window.addEventListener('scroll', handleScroll))
+onBeforeUnmount(() => window.removeEventListener('scroll', handleScroll))
 </script>

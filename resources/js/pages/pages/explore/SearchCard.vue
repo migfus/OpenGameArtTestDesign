@@ -15,10 +15,10 @@
             </AppButton>
         </div>
 
-        <div v-if="add_filters.licenses" class="flex gap-4 flex-wrap">
+        <div v-if="add_filters.licenses" class="flex gap-4 flex-wrap bg-dark-001 p-2 px-4 rounded-xl">
             <AppCheckbox v-for="item in licenses" :name="item.name" v-model="item.checked" />
         </div>
-        <div v-if="add_filters.assets_type" class="flex gap-4 flex-wrap">
+        <div v-if="add_filters.assets_type" class="flex gap-4 flex-wrap bg-dark-001 p-2 px-4 rounded-xl">
             <AppCheckbox v-for="item in assets_types" :name="item.name" v-model="item.checked" />
         </div>
 

@@ -39,6 +39,7 @@
                 <RouterLink
                     v-for="item in nav.links"
                     :to="{ name: item.name }"
+                    @click="$emit('close_sidebar')"
                     :class="[
                         $route.name == item.name ? 'bg-brand-950' : '',
                         'flex items-center gap-2 font-semibold hover:bg-brand-950 p-2 px-4 rounded-xl transition-all'
@@ -54,6 +55,7 @@
                 <RouterLink
                     v-for="item in nav.links"
                     :to="item.href"
+                    @click="$emit('close_sidebar')"
                     class="flex items-center gap-2 font-semibold hover:bg-brand-950 px-4 py-2 rounded-xl transition-all"
                 >
                     <img :src="item.image_url" class="size-6 text-brand-200 rounded-full border border-brand-900" />
@@ -105,6 +107,7 @@ defineProps<{
 }>()
 
 const $route = useRoute()
+const $emit = defineEmits(['close_sidebar'])
 
 const following = [
     {
