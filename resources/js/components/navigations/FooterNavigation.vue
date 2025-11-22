@@ -1,5 +1,5 @@
 <template>
-    <div :class="[showFooter ? 'translate-y-0' : 'translate-y-full', 'fixed bg-dark-001/75 backdrop-blur-lg bottom-0 w-full gap-2 transition-all']">
+    <div :class="[showFooter ? 'translate-y-0' : 'translate-y-full', 'fixed bg-dark-001/75 backdrop-blur-lg bottom-0 w-full gap-2 transition-all z-20']">
         <RouterLink
             v-for="item in bottom_navigations"
             :to="{ name: item.name }"
