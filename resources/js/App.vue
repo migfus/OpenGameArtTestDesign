@@ -12,8 +12,8 @@
 
 <script setup lang="ts">
 import TopBanner from './components/header/TopBanner.vue'
-import TopNavigation from './components/navigations/TopNavigation.vue'
 import SideNavigation from './components/navigations/SideNavigation.vue'
+import TopNavigation from './components/navigations/TopNavigation.vue'
 
 import { ref } from 'vue'
 import WarningModal from './components/modals/WarningModal.vue'

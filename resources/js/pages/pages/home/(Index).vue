@@ -10,8 +10,10 @@
 <script setup lang="ts">
 import NotifyBanner from '@/components/header/NotifyBanner.vue'
 import CarouselCard from './CarouselCard.vue'
-import { Post } from './homeInterfaces'
 import PostCaregorySection from './PostCaregorySection.vue'
+
+import { Post } from '@/globalInterfaces'
+import { onMounted } from 'vue'
 
 const post_types: string[] = ['2D Art', '3D Art', 'Concept Art', 'Texture', 'Music', 'Sound Effects', 'Document']
 const user = {

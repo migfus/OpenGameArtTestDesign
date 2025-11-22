@@ -82,12 +82,15 @@
 </template>
 
 <script setup lang="ts">
-import { Icon } from '@iconify/vue'
-import { nextTick, onMounted, onUnmounted, ref, useTemplateRef, watch } from 'vue'
-import DataTransition from '../transitions/DataTransition.vue'
 import { Dialog, DialogPanel, TransitionChild, TransitionRoot } from '@headlessui/vue'
+import { Icon } from '@iconify/vue'
+import { nextTick, onMounted, onUnmounted, useTemplateRef } from 'vue'
 import FooterNavigation from './FooterNavigation.vue'
 import SideNavigationContent from './SideNavigationContent.vue'
+
+import { useNavigationStore } from '@/stores/navigationStore'
+
+const $navigationStore = useNavigationStore()
 
 const $hidden_top_navigation = defineModel<boolean>('top_navigation_hidden', { required: true })
 const content_scroll = useTemplateRef<HTMLElement>('content_scroll')
@@ -115,6 +118,8 @@ function handleScroll() {
     }
 }
 onMounted(async () => {
+    $navigationStore.getData()
+
     await nextTick()
     if (content_scroll.value) {
         content_scroll.value.addEventListener('scroll', handleScroll, { passive: true })

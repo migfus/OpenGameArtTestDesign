@@ -33,7 +33,8 @@
             'flex-col gap-2 h-min-[calc(100vh-7rem)] justify-between  border-brand-950 py-2 w-60 flex-none'
         ]"
     >
-        <DataTransition class="flex flex-col gap-8 overflow-y-auto scrollbar-hide rounded-xl text-brand-200 pt-2">
+        <div class="flex flex-col gap-8 overflow-y-auto scrollbar-hide rounded-xl text-brand-200 pt-2">
+            <!-- SECTION: NAV -->
             <div v-for="(nav, idx) in navigations" :class="[idx == 0 ? '-mt-8' : '', 'flex flex-col gap-1 px-2 ']">
                 <p>{{ nav.name }}</p>
                 <RouterLink
@@ -48,6 +49,44 @@
                     <Icon :icon="item.icon" class="size-6 text-brand-200" />
                     <p>{{ item.display_name }}</p>
                 </RouterLink>
+            </div>
+
+            <!-- SECTION: COLLECTIONS -->
+
+            <div class="flex flex-col gap-1 px-2">
+                <p class="mx-2">New Collections</p>
+                <OtherLinksLoader v-if="$navigationStore.config.loading" />
+                <DataTransition v-else>
+                    <RouterLink
+                        v-for="(item, idx) in $navigationStore.recent_collections"
+                        :to="item.link"
+                        @click="$emit('close_sidebar')"
+                        class="flex items-center gap-2 font-semibold hover:bg-brand-950 px-4 py-2 rounded-xl transition-all"
+                        :style="{ animationDelay: `${idx * 100}ms`, transitionDelay: `${idx * 100}ms` }"
+                        @animationend.once="clearDelays"
+                        @transitionend.once="clearDelays"
+                    >
+                        <img
+                            src="https://images.unsplash.com/photo-1761839259488-2bdeeae794f5?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDF8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwxfHx8ZW58MHx8fHx8"
+                            class="size-6 text-brand-200 rounded-full border border-brand-900"
+                        />
+                        <p class="truncate">{{ item.title }}</p>
+                    </RouterLink>
+                </DataTransition>
+            </div>
+
+            <div class="flex flex-col gap-1 px-2">
+                <p class="mx-2">Recent Forums</p>
+                <OtherLinksLoader v-if="$navigationStore.config.loading" />
+                <!-- <RouterLink
+                    v-for="item in nav.links"
+                    :to="item.href"
+                    @click="$emit('close_sidebar')"
+                    class="flex items-center gap-2 font-semibold hover:bg-brand-950 px-4 py-2 rounded-xl transition-all"
+                >
+                    <img :src="item.image_url" class="size-6 text-brand-200 rounded-full border border-brand-900" />
+                    <p class="">{{ item.name }}</p>
+                </RouterLink> -->
             </div>
 
             <div v-for="nav in other_links" class="flex flex-col gap-1 px-2">
@@ -82,7 +121,7 @@
                     <p class="">Progress</p>
                 </a>
             </div>
-        </DataTransition>
+        </div>
 
         <RouterLink
             to="/"
@@ -100,7 +139,13 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
 import DataTransition from '../transitions/DataTransition.vue'
+import OtherLinksLoader from './OtherLinksLoader.vue'
+
 import { useRoute } from 'vue-router'
+import { useNavigationStore } from '@/stores/navigationStore'
+import { clearDelays } from '@/utils/utils'
+
+const $navigationStore = useNavigationStore()
 
 defineProps<{
     on_mobile?: boolean

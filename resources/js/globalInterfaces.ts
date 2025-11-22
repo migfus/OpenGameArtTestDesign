@@ -10,3 +10,13 @@ export interface Post {
     user: User
     image_url: string
 }
+
+// SECTION: FROM API
+export interface Collection {
+    title: string
+    link: string
+}
+
+export interface StoreConfig {
+    loading: boolean
+}
