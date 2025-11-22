@@ -30,6 +30,11 @@ const routes = [
         path: '/leaderboards',
         name: 'leaderboards',
         component: () => import('@/pages/pages/home/(Index).vue')
+    },
+    {
+        path: '/:pathMatch(.*)*',
+        name: 'NotFound',
+        component: () => import('@/pages/pages/not-found/(Index).vue')
     }
 ]
 

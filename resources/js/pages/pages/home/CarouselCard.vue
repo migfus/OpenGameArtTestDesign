@@ -1,15 +1,24 @@
 <template>
-    <Carousel id="gallery" v-bind="galleryConfig" v-model="currentSlide" class="mb-2">
-        <Slide v-for="image in images" :key="image.id">
-            <img :src="image.url" alt="Gallery Image" class="object-cover w-full" />
+    <CarouselCardLoader v-if="$navigationStore.config.loading" is_main />
+    <Carousel v-else id="gallery" v-bind="galleryConfig" v-model="currentSlide" class="mb-2">
+        <Slide v-for="item in $navigationStore.posts" :key="item.link">
+            <p class="absolute font-bold text-2xl bottom-0 bg-linear-to-t from-brand-950 to-transparent px-2 py-4 w-full text-center anek-latin">
+                {{ item.title }}
+            </p>
+            <img :src="getAnyPossibleImageFromHtml(item.content_html)[0] ?? item.author_image" alt="Gallery Image" class="object-cover w-full" />
         </Slide>
     </Carousel>
 
-    <Carousel id="thumbnails" v-bind="thumbnailsConfig" v-model="currentSlide">
-        <Slide v-for="image in images" :key="image.id">
+    <CarouselCardLoader v-if="$navigationStore.config.loading" />
+    <Carousel v-else id="thumbnails" v-bind="thumbnailsConfig" v-model="currentSlide">
+        <Slide v-for="item in $navigationStore.posts" :key="item.link">
             <template #default="{ currentIndex, isActive }">
-                <div :class="['thumbnail', { 'is-active': isActive }]" @click="slideTo(currentIndex)" class="rounded">
-                    <img :src="image.url" alt="Thumbnail Image" class="cursor-pointer rounded-2xl opacity-50" />
+                <div :class="[]" @click="slideTo(currentIndex)" class="rounded">
+                    <img
+                        :src="getAnyPossibleImageFromHtml(item.content_html)[0] ?? item.author_image"
+                        alt="Thumbnail Image"
+                        :class="[isActive ? 'opacity-75' : 'opacity-50', 'cursor-pointer rounded-2xl']"
+                    />
                 </div>
             </template>
         </Slide>
@@ -23,7 +32,13 @@
 <script setup lang="ts">
 import 'vue3-carousel/carousel.css'
 import { Carousel, Slide, Navigation } from 'vue3-carousel'
+import CarouselCardLoader from './CarouselCardLoader.vue'
+
 import { ref } from 'vue'
+import { useNavigationStore } from '@/stores/navigationStore'
+import { getAnyPossibleImageFromHtml } from '@/utils/utils'
+
+const $navigationStore = useNavigationStore()
 
 const currentSlide = ref(0)
 

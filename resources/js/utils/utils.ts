@@ -54,3 +54,12 @@ export function messengerStyleTime(timestamp: string) {
         return date.fromNow()
     }
 }
+
+export function removeImageInHTML(html_raw: string) {
+    return html_raw.replace(/<img[^>]*>/gi, '')
+}
+
+export function getAnyPossibleImageFromHtml(html_raw: string) {
+    const matches = [...html_raw.matchAll(/<img[^>]+src="([^">]+)"/gi)]
+    return matches.map((m) => m[1])
+}
