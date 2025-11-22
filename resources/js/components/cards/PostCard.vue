@@ -22,7 +22,6 @@
 
 <script setup lang="ts">
 import { Post } from '@/globalInterfaces'
-import { Icon } from '@iconify/vue'
 
 defineProps<{
     post: Post

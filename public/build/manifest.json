@@ -1,13 +1,13 @@
 {
-  "_PostCaregorySection.vue_vue_type_script_setup_true_lang-CEG0uPqT.js": {
-    "file": "assets/PostCaregorySection.vue_vue_type_script_setup_true_lang-CEG0uPqT.js",
-    "name": "PostCaregorySection.vue_vue_type_script_setup_true_lang",
+  "_ArtCategorySection.vue_vue_type_script_setup_true_lang-AOsE30Fk.js": {
+    "file": "assets/ArtCategorySection.vue_vue_type_script_setup_true_lang-AOsE30Fk.js",
+    "name": "ArtCategorySection.vue_vue_type_script_setup_true_lang",
     "imports": [
       "resources/js/app.ts"
     ]
   },
   "resources/css/app.css": {
-    "file": "assets/app-DrdrHSjp.css",
+    "file": "assets/app-BQCHw1ei.css",
     "src": "resources/css/app.css",
     "isEntry": true,
     "name": "app",
@@ -16,7 +16,7 @@
     ]
   },
   "resources/js/app.ts": {
-    "file": "assets/app-3AYiERzl.js",
+    "file": "assets/app-B8Crkxh8.js",
     "name": "app",
     "src": "resources/js/app.ts",
     "isEntry": true,
@@ -30,23 +30,23 @@
     ]
   },
   "resources/js/pages/pages/explore/(Index).vue": {
-    "file": "assets/(Index)-Dt3Vvzmw.js",
+    "file": "assets/(Index)-BpEAuOVi.js",
     "name": "(Index)",
     "src": "resources/js/pages/pages/explore/(Index).vue",
     "isDynamicEntry": true,
     "imports": [
-      "_PostCaregorySection.vue_vue_type_script_setup_true_lang-CEG0uPqT.js",
+      "_ArtCategorySection.vue_vue_type_script_setup_true_lang-AOsE30Fk.js",
       "resources/js/app.ts"
     ]
   },
   "resources/js/pages/pages/home/(Index).vue": {
-    "file": "assets/(Index)-CyS9A9D_.js",
+    "file": "assets/(Index)-CgLUQcUG.js",
     "name": "(Index)",
     "src": "resources/js/pages/pages/home/(Index).vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.ts",
-      "_PostCaregorySection.vue_vue_type_script_setup_true_lang-CEG0uPqT.js"
+      "_ArtCategorySection.vue_vue_type_script_setup_true_lang-AOsE30Fk.js"
     ],
     "css": [
       "assets/(Index)-Dtdw2zcG.css"

@@ -21,5 +21,5 @@
 </template>
 
 <script setup lang="ts">
-import DataTransition from '../transitions/DataTransition.vue'
+import DataTransition from '@/components/transitions/DataTransition.vue'
 </script>
