@@ -2,233 +2,26 @@
     <div class="flex flex-col gap-4">
         <NotifyBanner />
         <CarouselCard />
-        <PostCaregorySection :posts="post_popular.posts" :title="post_popular.name" />
-        <PostCaregorySection :posts="post_new_art.posts" :title="post_new_art.name" />
+        <ArtCaregorySection :arts="$navigationStore.weekly_arts" :loading="$navigationStore.config.loading" title="Weekly Popular" more="/popular" />
+        <ArtCaregorySection :arts="$navigationStore.new_arts" :loading="$navigationStore.config.loading" title="New Arts" more="/latest" />
+        <PostCategorySection :posts="$navigationStore.posts" :loading="$navigationStore.config.loading" />
     </div>
 </template>
 
 <script setup lang="ts">
 import NotifyBanner from '@/components/header/NotifyBanner.vue'
 import CarouselCard from './CarouselCard.vue'
-import PostCaregorySection from './PostCaregorySection.vue'
+import PostCategorySection from './PostCategorySection.vue'
 
-import { Post } from '@/globalInterfaces'
-import { onMounted } from 'vue'
+import { useNavigationStore } from '@/stores/navigationStore'
+import ArtCaregorySection from './ArtCaregorySection.vue'
+
+const $navigationStore = useNavigationStore()
 
 const post_types: string[] = ['2D Art', '3D Art', 'Concept Art', 'Texture', 'Music', 'Sound Effects', 'Document']
 const user = {
     avatar_url:
         'https://images.unsplash.com/photo-1761839257046-84e95464cc52?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDF8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwxfHx8ZW58MHx8fHx8',
     username: 'username'
-}
-
-const post_popular: {
-    name: string
-    posts: Post[]
-} = {
-    name: 'Popular',
-    posts: [
-        {
-            type: post_types[0],
-            title: 'Boss Type',
-            description: 'Hello Description',
-            user: user,
-            image_url:
-                'https://plus.unsplash.com/premium_photo-1750235095427-03dfa05bf952?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwyfHx8ZW58MHx8fHx8'
-        },
-        {
-            type: post_types[0],
-            title: 'Boss Type',
-            description: 'Hello Description',
-            user: user,
-            image_url:
-                'https://plus.unsplash.com/premium_photo-1750235095427-03dfa05bf952?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwyfHx8ZW58MHx8fHx8'
-        },
-        {
-            type: post_types[0],
-            title: 'Boss Type',
-            description: 'Hello Description',
-            user: user,
-            image_url:
-                'https://plus.unsplash.com/premium_photo-1750235095427-03dfa05bf952?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwyfHx8ZW58MHx8fHx8'
-        },
-        {
-            type: post_types[0],
-            title: 'Boss Type',
-            description: 'Hello Description',
-            user: user,
-            image_url:
-                'https://plus.unsplash.com/premium_photo-1750235095427-03dfa05bf952?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwyfHx8ZW58MHx8fHx8'
-        },
-        {
-            type: post_types[0],
-            title: 'Boss Type',
-            description: 'Hello Description',
-            user: user,
-            image_url:
-                'https://plus.unsplash.com/premium_photo-1750235095427-03dfa05bf952?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwyfHx8ZW58MHx8fHx8'
-        },
-        {
-            type: post_types[0],
-            title: 'Boss Type',
-            description: 'Hello Description',
-            user: user,
-            image_url:
-                'https://plus.unsplash.com/premium_photo-1750235095427-03dfa05bf952?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwyfHx8ZW58MHx8fHx8'
-        },
-        {
-            type: post_types[0],
-            title: 'Boss Type',
-            description: 'Hello Description',
-            user: user,
-            image_url:
-                'https://plus.unsplash.com/premium_photo-1750235095427-03dfa05bf952?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwyfHx8ZW58MHx8fHx8'
-        },
-        {
-            type: post_types[0],
-            title: 'Boss Type',
-            description: 'Hello Description',
-            user: user,
-            image_url:
-                'https://plus.unsplash.com/premium_photo-1750235095427-03dfa05bf952?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwyfHx8ZW58MHx8fHx8'
-        },
-        {
-            type: post_types[0],
-            title: 'Boss Type',
-            description: 'Hello Description',
-            user: user,
-            image_url:
-                'https://plus.unsplash.com/premium_photo-1750235095427-03dfa05bf952?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwyfHx8ZW58MHx8fHx8'
-        },
-        {
-            type: post_types[0],
-            title: 'Boss Type',
-            description: 'Hello Description',
-            user: user,
-            image_url:
-                'https://plus.unsplash.com/premium_photo-1750235095427-03dfa05bf952?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwyfHx8ZW58MHx8fHx8'
-        },
-        {
-            type: post_types[0],
-            title: 'Boss Type',
-            description: 'Hello Description',
-            user: user,
-            image_url:
-                'https://plus.unsplash.com/premium_photo-1750235095427-03dfa05bf952?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwyfHx8ZW58MHx8fHx8'
-        },
-        {
-            type: post_types[0],
-            title: 'Boss Type',
-            description: 'Hello Description',
-            user: user,
-            image_url:
-                'https://plus.unsplash.com/premium_photo-1750235095427-03dfa05bf952?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwyfHx8ZW58MHx8fHx8'
-        }
-    ]
-}
-
-const post_new_art: {
-    name: string
-    posts: Post[]
-} = {
-    name: 'New Arts',
-    posts: [
-        {
-            type: post_types[0],
-            title: 'Boss Type',
-            description: 'Hello Description',
-            user: user,
-            image_url:
-                'https://plus.unsplash.com/premium_photo-1750235095427-03dfa05bf952?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwyfHx8ZW58MHx8fHx8'
-        },
-        {
-            type: post_types[0],
-            title: 'Boss Type',
-            description: 'Hello Description',
-            user: user,
-            image_url:
-                'https://plus.unsplash.com/premium_photo-1750235095427-03dfa05bf952?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwyfHx8ZW58MHx8fHx8'
-        },
-        {
-            type: post_types[0],
-            title: 'Boss Type',
-            description: 'Hello Description',
-            user: user,
-            image_url:
-                'https://plus.unsplash.com/premium_photo-1750235095427-03dfa05bf952?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwyfHx8ZW58MHx8fHx8'
-        },
-        {
-            type: post_types[0],
-            title: 'Boss Type',
-            description: 'Hello Description',
-            user: user,
-            image_url:
-                'https://plus.unsplash.com/premium_photo-1750235095427-03dfa05bf952?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwyfHx8ZW58MHx8fHx8'
-        },
-        {
-            type: post_types[0],
-            title: 'Boss Type',
-            description: 'Hello Description',
-            user: user,
-            image_url:
-                'https://plus.unsplash.com/premium_photo-1750235095427-03dfa05bf952?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwyfHx8ZW58MHx8fHx8'
-        },
-        {
-            type: post_types[0],
-            title: 'Boss Type',
-            description: 'Hello Description',
-            user: user,
-            image_url:
-                'https://plus.unsplash.com/premium_photo-1750235095427-03dfa05bf952?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwyfHx8ZW58MHx8fHx8'
-        },
-        {
-            type: post_types[0],
-            title: 'Boss Type',
-            description: 'Hello Description',
-            user: user,
-            image_url:
-                'https://plus.unsplash.com/premium_photo-1750235095427-03dfa05bf952?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwyfHx8ZW58MHx8fHx8'
-        },
-        {
-            type: post_types[0],
-            title: 'Boss Type',
-            description: 'Hello Description',
-            user: user,
-            image_url:
-                'https://plus.unsplash.com/premium_photo-1750235095427-03dfa05bf952?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwyfHx8ZW58MHx8fHx8'
-        },
-        {
-            type: post_types[0],
-            title: 'Boss Type',
-            description: 'Hello Description',
-            user: user,
-            image_url:
-                'https://plus.unsplash.com/premium_photo-1750235095427-03dfa05bf952?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwyfHx8ZW58MHx8fHx8'
-        },
-        {
-            type: post_types[0],
-            title: 'Boss Type',
-            description: 'Hello Description',
-            user: user,
-            image_url:
-                'https://plus.unsplash.com/premium_photo-1750235095427-03dfa05bf952?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwyfHx8ZW58MHx8fHx8'
-        },
-        {
-            type: post_types[0],
-            title: 'Boss Type',
-            description: 'Hello Description',
-            user: user,
-            image_url:
-                'https://plus.unsplash.com/premium_photo-1750235095427-03dfa05bf952?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwyfHx8ZW58MHx8fHx8'
-        },
-        {
-            type: post_types[0],
-            title: 'Boss Type',
-            description: 'Hello Description',
-            user: user,
-            image_url:
-                'https://plus.unsplash.com/premium_photo-1750235095427-03dfa05bf952?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwyfHx8ZW58MHx8fHx8'
-        }
-    ]
 }
 </script>

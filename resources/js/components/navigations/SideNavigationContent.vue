@@ -35,21 +35,29 @@
     >
         <div class="flex flex-col gap-8 overflow-y-auto scrollbar-hide rounded-xl text-brand-200 pt-2">
             <!-- SECTION: NAV -->
-            <div v-for="(nav, idx) in navigations" :class="[idx == 0 ? '-mt-8' : '', 'flex flex-col gap-1 px-2 ']">
-                <p>{{ nav.name }}</p>
-                <RouterLink
-                    v-for="item in nav.links"
-                    :to="{ name: item.name }"
-                    @click="$emit('close_sidebar')"
-                    :class="[
-                        $route.name == item.name ? 'bg-brand-950' : '',
-                        'flex items-center gap-2 font-semibold hover:bg-brand-950 p-2 px-4 rounded-xl transition-all'
-                    ]"
+            <DataTransition class="-mt-8">
+                <div
+                    v-for="(nav, idx) in navigations"
+                    class="flex flex-col gap-1 px-2 transition-all"
+                    :style="{ animationDelay: `${idx * 100}ms`, transitionDelay: `${idx * 100}ms` }"
+                    @animationend.once="clearDelays"
+                    @transitionend.once="clearDelays"
                 >
-                    <Icon :icon="item.icon" class="size-6 text-brand-200" />
-                    <p>{{ item.display_name }}</p>
-                </RouterLink>
-            </div>
+                    <p>{{ nav.name }}</p>
+                    <RouterLink
+                        v-for="item in nav.links"
+                        :to="{ name: item.name }"
+                        @click="$emit('close_sidebar')"
+                        :class="[
+                            $route.name == item.name ? 'bg-brand-950' : '',
+                            'flex items-center gap-2 font-semibold hover:bg-brand-950 p-2 px-4 rounded-xl transition-all'
+                        ]"
+                    >
+                        <Icon :icon="item.icon" class="size-6 text-brand-200" />
+                        <p>{{ item.display_name }}</p>
+                    </RouterLink>
+                </div>
+            </DataTransition>
 
             <!-- SECTION: COLLECTIONS -->
 
@@ -67,7 +75,7 @@
                         @transitionend.once="clearDelays"
                     >
                         <img
-                            src="https://images.unsplash.com/photo-1761839259488-2bdeeae794f5?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDF8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwxfHx8ZW58MHx8fHx8"
+                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Icon-round-Question_mark.svg/1200px-Icon-round-Question_mark.svg.png"
                             class="size-6 text-brand-200 rounded-full border border-brand-900"
                         />
                         <p class="truncate">{{ item.title }}</p>
@@ -78,28 +86,45 @@
             <div class="flex flex-col gap-1 px-2">
                 <p class="mx-2">Recent Forums</p>
                 <OtherLinksLoader v-if="$navigationStore.config.loading" />
-                <!-- <RouterLink
-                    v-for="item in nav.links"
-                    :to="item.href"
-                    @click="$emit('close_sidebar')"
-                    class="flex items-center gap-2 font-semibold hover:bg-brand-950 px-4 py-2 rounded-xl transition-all"
-                >
-                    <img :src="item.image_url" class="size-6 text-brand-200 rounded-full border border-brand-900" />
-                    <p class="">{{ item.name }}</p>
-                </RouterLink> -->
+                <DataTransition v-else>
+                    <RouterLink
+                        v-for="(item, idx) in $navigationStore.recent_forum"
+                        :to="item.link"
+                        @click="$emit('close_sidebar')"
+                        class="flex items-center gap-2 font-semibold hover:bg-brand-950 px-4 py-2 rounded-xl transition-all justify-between"
+                        :style="{ animationDelay: `${idx * 100}ms`, transitionDelay: `${idx * 100}ms` }"
+                        @animationend.once="clearDelays"
+                        @transitionend.once="clearDelays"
+                    >
+                        <img
+                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Icon-round-Question_mark.svg/1200px-Icon-round-Question_mark.svg.png"
+                            class="size-6 text-brand-200 rounded-full border border-brand-900"
+                        />
+                        <div class="truncate grow">
+                            <p class="truncate">{{ item.title }}</p>
+                            <p class="text-xs font-normal truncate">{{ item.username }}</p>
+                        </div>
+                        <p class="text-xs flex-none">{{ timeAgo(item.time_ago) }}</p>
+                    </RouterLink>
+                </DataTransition>
             </div>
 
-            <div v-for="nav in other_links" class="flex flex-col gap-1 px-2">
-                <p class="mx-2">{{ nav.name }}</p>
-                <RouterLink
-                    v-for="item in nav.links"
-                    :to="item.href"
-                    @click="$emit('close_sidebar')"
-                    class="flex items-center gap-2 font-semibold hover:bg-brand-950 px-4 py-2 rounded-xl transition-all"
-                >
-                    <img :src="item.image_url" class="size-6 text-brand-200 rounded-full border border-brand-900" />
-                    <p class="">{{ item.name }}</p>
-                </RouterLink>
+            <div class="flex flex-col gap-1 px-2">
+                <p class="mx-2">Affiliates</p>
+                <OtherLinksLoader v-if="$navigationStore.config.loading" />
+                <DataTransition v-else>
+                    <a
+                        v-for="(item, idx) in $navigationStore.affiliates"
+                        :a="item.link"
+                        @click="$emit('close_sidebar')"
+                        class="flex items-center gap-2 font-semibold hover:bg-brand-950 px-4 py-2 rounded-xl transition-all justify-between cursor-pointer"
+                        :style="{ animationDelay: `${idx * 100}ms`, transitionDelay: `${idx * 100}ms` }"
+                        @animationend.once="clearDelays"
+                        @transitionend.once="clearDelays"
+                    >
+                        <p class="truncate">{{ item.title }}</p>
+                    </a>
+                </DataTransition>
             </div>
 
             <div class="flex flex-col gap-1 px-2">
@@ -143,7 +168,7 @@ import OtherLinksLoader from './OtherLinksLoader.vue'
 
 import { useRoute } from 'vue-router'
 import { useNavigationStore } from '@/stores/navigationStore'
-import { clearDelays } from '@/utils/utils'
+import { clearDelays, timeAgo } from '@/utils/utils'
 
 const $navigationStore = useNavigationStore()
 

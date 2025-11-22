@@ -2,6 +2,30 @@
 
 @import 'tailwindcss';
 
+@layer utilities {
+    /* Mobile: show only first 2 items */
+    .limit-arts > *:nth-child(n + 3) {
+        @apply hidden;
+    }
+
+    /* Medium screens: show first 4 items */
+    @media (min-width: 768px) {
+        .limit-arts > * {
+            @apply block; /* reset hidden first */
+        }
+        .limit-arts > *:nth-child(n + 5) {
+            @apply hidden;
+        }
+    }
+
+    /* Large screens: show all items */
+    @media (min-width: 1024px) {
+        .limit-arts > * {
+            @apply block; /* reset hidden first */
+        }
+    }
+}
+
 @theme {
     /* BRAND */
     --color-brand-50: #f3f9fb;

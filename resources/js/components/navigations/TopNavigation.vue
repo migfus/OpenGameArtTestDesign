@@ -15,7 +15,14 @@
             </RouterLink>
 
             <RouterLink to="/" class="gap-4 items-center hidden md:flex">
-                <p class="text-xs press-start-2p-regular flex flex-wrap w-42 text-center">Winter Game Jam 2025</p>
+                <BasicTransition>
+                    <p v-if="$navigationStore.config.loading" class="text-xs press-start-2p-regular flex flex-wrap w-64 text-center rotate-4 absolute">
+                        Somethin' cookin'...
+                    </p>
+                    <p v-else class="text-xs press-start-2p-regular flex flex-wrap w-64 text-center rotate-4 absolute line-clamp-2">
+                        {{ $navigationStore.latest_banner_title }}
+                    </p>
+                </BasicTransition>
             </RouterLink>
         </div>
 
@@ -47,8 +54,11 @@ import AppInput from '../form/AppInput.vue'
 import AppButton from '../form/AppButton.vue'
 
 import { ref } from 'vue'
+import { useNavigationStore } from '@/stores/navigationStore'
+import BasicTransition from '../transitions/BasicTransition.vue'
 
 const $top_navigation_hidden = defineModel<boolean>('top_navigation_hidden', { required: true })
+const $navigationStore = useNavigationStore()
 
 const search = ref('')
 const app_url = window.location.origin
