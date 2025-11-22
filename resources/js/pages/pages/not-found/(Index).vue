@@ -42,6 +42,7 @@ onMounted(() => {
     timer = window.setInterval(() => {
         if (seconds.value === 0) {
             redirect()
+            clearInterval(timer)
         } else {
             seconds.value = seconds.value - 1
         }
