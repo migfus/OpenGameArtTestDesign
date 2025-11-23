@@ -21,7 +21,7 @@
 
         <RouterLink
             to="/"
-            class="bg-brand-950 flex justify-center items-center rounded-xl border border-brand-900 size-10 fixed bottom-2 hover:bg-dark-001 transition-all"
+            class="bg-brand-950/75 flex justify-center items-center rounded-xl border border-brand-900 backdrop-blur-lg size-10 fixed bottom-2 hover:bg-dark-001 transition-all"
         >
             <Icon icon="memory:apps" class="size-6 text-brand-200" />
         </RouterLink>
@@ -152,7 +152,7 @@
             to="/"
             :class="[
                 on_mobile ? 'w-60' : 'w-56',
-                'bg-brand-950 flex justify-between px-4 items-center rounded-xl border border-brand-900 h-10 fixed bottom-2 text-brand-200 ml-2 hover:bg-dark-001'
+                'bg-brand-950/75 flex justify-between px-4 items-center rounded-xl border border-brand-900 backdrop-blur-lg h-10 fixed bottom-2 text-brand-200 ml-2 hover:bg-dark-001'
             ]"
         >
             <p>Settings</p>

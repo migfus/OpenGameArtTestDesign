@@ -67,3 +67,11 @@ export function getAnyPossibleImageFromHtml(html_raw: string) {
 export function dateFormat(date_string: string) {
     return messengerStyleTime(moment(date_string, 'DD MMMM YYYY - h:mma').format())
 }
+
+export function getFileNameFromUrl(url?: string) {
+    if (url) {
+        let file_name = new URL(url)
+        return file_name.pathname.split('/').pop()
+    }
+    return ''
+}
