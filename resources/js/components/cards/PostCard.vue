@@ -7,7 +7,7 @@
             class="w-full h-54 aspect-square relative bg-cover rounded-2xl border-2 border-brand-950 flex flex-col justify-end z-10"
             :style="`background-image: url(${getAnyPossibleImageFromHtml(post.content_html)[0] ?? post.author_image});`"
         ></div>
-        <div class="flex justify-between">
+        <div class="flex justify-between z-10 text-brand-300">
             <div class="flex gap-2 items-center">
                 <img :src="post.author_image" class="size-4 rounded-full ring ring-dark-001" />
                 <p class="font-bold truncate">{{ post.author_name }}</p>

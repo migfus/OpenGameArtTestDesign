@@ -34,7 +34,9 @@ import DataTransition from '@/components/transitions/DataTransition.vue'
 import { Art } from '@/globalInterfaces'
 import { animation_delay, clearDelays } from '@/utils/utils'
 import { breakpointsTailwind, useBreakpoints } from '@vueuse/core'
-import { computed, reactive } from 'vue'
+import { computed, reactive, ref } from 'vue'
+
+const allAudio = ref([])
 
 const { arts } = defineProps<{
     title: string
