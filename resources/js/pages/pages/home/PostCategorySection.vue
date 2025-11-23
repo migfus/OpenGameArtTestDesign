@@ -15,7 +15,7 @@
             />
             <PostCard
                 v-else
-                v-for="(item, idx) in posts"
+                v-for="(item, idx) in filtered_posts"
                 :post="item"
                 :idx
                 :style="{ animationDelay: `${(idx * animation_delay) / 2}ms`, transitionDelay: `${(idx * animation_delay) / 2}ms` }"
@@ -31,9 +31,32 @@ import ArtCardLoader from '@/components/cards/ArtCardLoader.vue'
 import PostCard from '@/components/cards/PostCard.vue'
 import { Post } from '@/globalInterfaces'
 import { animation_delay, clearDelays } from '@/utils/utils'
+import { computed, reactive } from 'vue'
+import { breakpointsTailwind, useBreakpoints } from '@vueuse/core'
 
-defineProps<{
+const { posts } = defineProps<{
     posts: Post[]
     loading: boolean
 }>()
+
+const breakpoints = useBreakpoints(breakpointsTailwind)
+const breaks = reactive({
+    sm: breakpoints.greaterOrEqual('sm'),
+    md: breakpoints.greaterOrEqual('md'),
+    lg: breakpoints.greaterOrEqual('lg'),
+    xl: breakpoints.greaterOrEqual('xl'),
+    xxl: breakpoints.greaterOrEqual('2xl')
+})
+
+const filtered_posts = computed(() => {
+    if (breaks.xxl) {
+        return posts.slice(0, 4)
+    } else if (breaks.xl) {
+        return posts.slice(0, 3)
+    } else if (breaks.md) {
+        return posts.slice(0, 4)
+    } else {
+        return posts
+    }
+})
 </script>

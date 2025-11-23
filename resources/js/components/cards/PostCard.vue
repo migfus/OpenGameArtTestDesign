@@ -18,7 +18,7 @@
         </div>
         <div class="flex flex-col z-10">
             <p class="font-bold truncate">{{ post.title }}</p>
-            <p class="line-clamp-4" v-html="removeImageInHTML(post.content_html)"></p>
+            <p class="line-clamp-4 text-brand-200/75" v-html="removeImageInHTML(post.content_html)"></p>
         </div>
 
         <div class="absolute h-full w-full rounded-2xl group-hover:bg-brand-950/50 transition-all group-hover:scale-[110%] z-0 -ml-4"></div>

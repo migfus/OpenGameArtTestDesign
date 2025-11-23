@@ -35,10 +35,8 @@
 import { Art } from '@/globalInterfaces'
 import { Icon } from '@iconify/vue'
 
-defineProps<{
+const { art } = defineProps<{
     art: Art
     idx: number
 }>()
 </script>
-
-<style scoped></style>

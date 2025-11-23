@@ -9,6 +9,7 @@
     "devDependencies": {
         "@iconify/vue": "^5.0.0",
         "@tailwindcss/vite": "^4.0.0",
+        "@types/colorthief": "^2.6.0",
         "autoprefixer": "^10.4.22",
         "axios": "^1.13.2",
         "concurrently": "^9.0.1",

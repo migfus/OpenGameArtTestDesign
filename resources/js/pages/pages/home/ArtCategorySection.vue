@@ -15,7 +15,7 @@
             />
             <ArtCard
                 v-else
-                v-for="(item, idx) in arts"
+                v-for="(item, idx) in filtered_arts"
                 :art="item"
                 :idx
                 :style="{ animationDelay: `${(idx * animation_delay) / 4}ms`, transitionDelay: `${(idx * animation_delay) / 4}ms` }"
@@ -34,8 +34,9 @@ import DataTransition from '@/components/transitions/DataTransition.vue'
 import { Art } from '@/globalInterfaces'
 import { animation_delay, clearDelays } from '@/utils/utils'
 import { breakpointsTailwind, useBreakpoints } from '@vueuse/core'
+import { computed, reactive } from 'vue'
 
-defineProps<{
+const { arts } = defineProps<{
     title: string
     arts: Art[]
     loading: boolean
@@ -43,5 +44,24 @@ defineProps<{
     large?: boolean
 }>()
 
-const breakpoints = useBreakpoints(breakpointsTailwind, {})
+const breakpoints = useBreakpoints(breakpointsTailwind)
+const breaks = reactive({
+    sm: breakpoints.greaterOrEqual('sm'),
+    md: breakpoints.greaterOrEqual('md'),
+    lg: breakpoints.greaterOrEqual('lg'),
+    xl: breakpoints.greaterOrEqual('xl'),
+    xxl: breakpoints.greaterOrEqual('2xl')
+})
+
+const filtered_arts = computed(() => {
+    if (breaks.xxl) {
+        return arts.slice(0, 12)
+    } else if (breaks.xl) {
+        return arts.slice(0, 10)
+    } else if (breaks.lg) {
+        return arts.slice(0, 8)
+    } else {
+        return arts
+    }
+})
 </script>
