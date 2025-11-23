@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-col gap-4">
+    <div class="flex flex-col gap-4 mb-8">
         <NotifyBanner />
         <CarouselCard />
         <ArtCategorySection :arts="$navigationStore.weekly_arts" :loading="$navigationStore.config.loading" title="Weekly Popular" more="/popular" />

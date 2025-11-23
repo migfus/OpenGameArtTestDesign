@@ -125,7 +125,10 @@ class HomePageController extends Controller {
                 'posts' => $posts
             ]);
         } catch (\Exception $e) {
-            return $e->getMessage();
+            return response([
+                'content' => $e,
+                'title' => '500 Error',
+            ], 500);
         }
     }
 }

@@ -1,4 +1,4 @@
-import moment, { min } from 'moment'
+import moment from 'moment'
 
 export function clearDelays(e: Event) {
     const el = e.currentTarget as HTMLElement | null
@@ -62,4 +62,8 @@ export function removeImageInHTML(html_raw: string) {
 export function getAnyPossibleImageFromHtml(html_raw: string) {
     const matches = [...html_raw.matchAll(/<img[^>]+src="([^">]+)"/gi)]
     return matches.map((m) => m[1])
+}
+
+export function dateFormat(date_string: string) {
+    return messengerStyleTime(moment(date_string, 'DD MMMM YYYY - h:mma').format())
 }

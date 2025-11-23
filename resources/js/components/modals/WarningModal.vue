@@ -1,6 +1,6 @@
 <template>
     <TransitionRoot as="template" :show="open">
-        <Dialog as="div" class="relative z-10" @close="open = false">
+        <Dialog as="div" class="relative z-10">
             <TransitionChild
                 as="template"
                 enter="ease-out duration-300"
@@ -10,11 +10,11 @@
                 leave-from="opacity-100"
                 leave-to="opacity-0"
             >
-                <div class="fixed inset-0 bg-brand-950/75 transition-opacity backdrop-blur-lg" />
+                <div class="fixed inset-0 bg-brand-950/25 transition-opacity backdrop-blur-md" />
             </TransitionChild>
 
             <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
-                <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+                <div class="flex min-h-full items-end justify-center py-4 text-center sm:items-center sm:p-0">
                     <TransitionChild
                         as="template"
                         enter="ease-out duration-300"
@@ -25,7 +25,7 @@
                         leave-to="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                     >
                         <DialogPanel
-                            class="relative transform overflow-hidden rounded-2xl bg-dark-001 px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-sm sm:p-6"
+                            class="relative transform overflow-hidden sm:rounded-2xl bg-dark-001 px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:p-6 w-full mb-11 sm:max-w-sm"
                         >
                             <div>
                                 <div class="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-brand-950">
@@ -58,14 +58,12 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="mt-5 sm:mt-6">
-                                <button
-                                    type="button"
-                                    class="inline-flex w-full justify-center rounded-2xl bg-brand-950 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-dark-001 border border-brand-900 cursor-pointer"
-                                    @click="open = false"
+                            <div class="mt-5 sm:mt-6 gap-2 flex flex-col">
+                                <AppButton icon="memory:alert-circle" @click="open = false">I understand and explore</AppButton>
+
+                                <AppButton href="https://opengameart.org/" externalLinkOnly icon="memory:arrow-right-up" color="brand"
+                                    >Go to Official OpenGameArt.org</AppButton
                                 >
-                                    I understand and explore
-                                </button>
                             </div>
                         </DialogPanel>
                     </TransitionChild>
@@ -76,9 +74,9 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
 import { Dialog, DialogPanel, DialogTitle, TransitionChild, TransitionRoot } from '@headlessui/vue'
 import { Icon } from '@iconify/vue'
+import AppButton from '../form/AppButton.vue'
 
 import { useLocalStorage } from '@vueuse/core'
 

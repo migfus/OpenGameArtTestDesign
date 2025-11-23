@@ -13,7 +13,7 @@
             @click="$sidebar_open_model = true"
             :class="[$sidebar_open_model ? 'bg-brand-950' : 'hover:bg-brand-950', 'flex flex-col items-center py-2 flex-1 cursor-pointer transition-all']"
         >
-            <Icon icon="memory:apps" class="size-6" />
+            <Icon icon="memory:format-align-justify" class="size-6" />
             <p class="text-sm">More</p>
         </div>
     </div>
