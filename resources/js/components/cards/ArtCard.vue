@@ -11,11 +11,11 @@
                 <div v-if="art.audio_mp3" class="flex justify-center">
                     <DataTransition v-if="is_playing" class="flex gap-2 items-center cursor-pointer">
                         <Icon
-                            icon="memory:stop"
+                            icon="memory:rotate-counterclockwise"
                             class="size-12 bg-brand-950 rounded-full hover:scale-110 transition-all p-2"
                             @click.stop="stopAudio()"
                             @mousedown.stop
-                            :style="{ animationDelay: `${200}ms`, transitionDelay: `${200}ms` }"
+                            :style="{ animationDelay: `${100}ms`, transitionDelay: `${100}ms` }"
                             @animationend.once="clearDelays"
                             @transitionend.once="clearDelays"
                         />
@@ -27,15 +27,20 @@
                             @mousedown.stop
                         />
 
-                        <Icon
-                            icon="memory:arrow-right"
-                            class="size-12 bg-brand-950 rounded-full hover:scale-110 transition-all p-2"
-                            @click.stop="forwardTime()"
-                            @mousedown.stop
+                        <a
+                            :href="art.link"
+                            class="transition-all"
                             :style="{ animationDelay: `${200}ms`, transitionDelay: `${200}ms` }"
                             @animationend.once="clearDelays"
                             @transitionend.once="clearDelays"
-                        />
+                        >
+                            <Icon
+                                icon="memory:arrow-right"
+                                class="size-12 bg-brand-950 rounded-full hover:scale-110 transition-all p-2"
+                                @click.stop="forwardTime()"
+                                @mousedown.stop
+                            />
+                        </a>
                     </DataTransition>
 
                     <Icon
@@ -58,7 +63,20 @@
             </div>
         </div>
         <a :href="`https://opengameart.org/${art.link}`" class="flex flex-col z-10">
-            <p class="font-bold truncate">{{ art.title }}</p>
+            <div class="flex justify-between">
+                <p class="font-bold truncate">{{ art.title }}</p>
+
+                <div class="flex gap-2 items-center">
+                    <div class="flex items-center gap-1">
+                        <p class="text-xs">2k</p>
+                        <Icon icon="memory:chat" class="size-5" />
+                    </div>
+                    <div class="flex items-center gap-1">
+                        <p class="text-xs">888</p>
+                        <Icon icon="memory:heart" class="size-5" />
+                    </div>
+                </div>
+            </div>
             <p class="line-clamp-3 text-brand-200/50 group-hover:text-brand-200/75 transition-all">
                 Reprehenderit dolore culpa officia occaecat id eiusmod aliquip cillum cupidatat nisi consequat nisi cupidatat. Irure id consequat esse voluptate
                 Lorem. Pariatur minim quis cupidatat sit ut velit ad reprehenderit id id et voluptate. Lorem nulla incididunt elit ea ea amet proident non
@@ -91,7 +109,7 @@
 
                             <DataTransition v-if="is_playing" class="flex gap-2 items-center cursor-pointer mx-auto">
                                 <Icon
-                                    icon="memory:stop"
+                                    icon="memory:rotate-counterclockwise"
                                     class="size-10 text-brand-200 bg-dark-001 rounded-full hover:scale-110 transition-all p-2"
                                     @click.stop="stopAudio()"
                                     @mousedown.stop
@@ -107,15 +125,18 @@
                                     @mousedown.stop
                                 />
 
-                                <Icon
-                                    icon="memory:arrow-right"
-                                    class="size-10 bg-dark-001 text-brand-200 rounded-full hover:scale-110 transition-all p-2"
-                                    @click.stop="forwardTime()"
-                                    @mousedown.stop
+                                <a
+                                    :href="art.link"
+                                    class="transition-all"
                                     :style="{ animationDelay: `${200}ms`, transitionDelay: `${200}ms` }"
                                     @animationend.once="clearDelays"
                                     @transitionend.once="clearDelays"
-                                />
+                                >
+                                    <Icon
+                                        icon="memory:arrow-right"
+                                        class="size-10 bg-dark-001 text-brand-200 rounded-full hover:scale-110 transition-all p-2"
+                                    />
+                                </a>
                             </DataTransition>
 
                             <Icon
@@ -126,8 +147,15 @@
                                 @mousedown.stop
                             />
 
-                            <div class="w-32 flex justify-end">
-                                <AppButton icon="memory:arrow-right-circle" :href="art.link">View Art</AppButton>
+                            <div class="flex gap-2 items-center">
+                                <div class="flex items-center gap-1">
+                                    <p class="text-xs">2k</p>
+                                    <Icon icon="memory:chat" class="size-5" />
+                                </div>
+                                <div class="flex items-center gap-1">
+                                    <p class="text-xs">888</p>
+                                    <Icon icon="memory:heart" class="size-5" />
+                                </div>
                             </div>
                         </div>
 
@@ -222,7 +250,7 @@ function pauseAudio() {
 
 function stopAudio() {
     if (audioRef.value) {
-        pauseAudio()
+        // pauseAudio()
         audioRef.value.currentTime = 0
     }
 }

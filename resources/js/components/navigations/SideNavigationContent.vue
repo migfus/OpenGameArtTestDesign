@@ -65,21 +65,25 @@
                 <p class="mx-2">New Collections</p>
                 <OtherLinksLoader v-if="$navigationStore.config.loading" />
                 <DataTransition v-else>
-                    <RouterLink
+                    <a
                         v-for="(item, idx) in $navigationStore.recent_collections"
-                        :to="item.link"
+                        :href="`https://opengameart.org/content/${item.id}`"
                         @click="$emit('close_sidebar')"
                         class="flex items-center gap-2 font-semibold hover:bg-brand-950 px-4 py-2 rounded-xl transition-all"
                         :style="{ animationDelay: `${idx * 100}ms`, transitionDelay: `${idx * 100}ms` }"
                         @animationend.once="clearDelays"
                         @transitionend.once="clearDelays"
                     >
-                        <img
-                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Icon-round-Question_mark.svg/1200px-Icon-round-Question_mark.svg.png"
-                            class="size-6 text-brand-200 rounded-full border border-brand-900"
-                        />
-                        <p class="truncate">{{ item.title }}</p>
-                    </RouterLink>
+                        <img v-if="item.user" :src="item.user.image_url" class="size-6 text-brand-200 rounded-full border border-brand-900" />
+                        <div v-else class="size-6 text-brand-200 rounded-full border border-brand-900 flex-none bg-brand-900 animate-pulse" />
+
+                        <div class="truncate grow">
+                            <p class="truncate text-sm">{{ item.title }}</p>
+                            <p v-if="item.user" class="text-xs font-normal truncate">{{ item.user?.username }}</p>
+                            <p v-else class="text-xs font-normal truncate bg-brand-900 h-2.5 animate-pulse rounded-xl" />
+                        </div>
+                        <p v-if="item.created_at" class="text-xs flex-none">{{ messengerStyleTime(item.created_at) }}</p>
+                    </a>
                 </DataTransition>
             </div>
 
@@ -87,25 +91,25 @@
                 <p class="mx-2">Recent Forums</p>
                 <OtherLinksLoader v-if="$navigationStore.config.loading" />
                 <DataTransition v-else>
-                    <RouterLink
+                    <a
                         v-for="(item, idx) in $navigationStore.recent_forum"
-                        :to="item.link"
+                        :href="`https://opengameart.org/forumtopic/${item.id}`"
                         @click="$emit('close_sidebar')"
                         class="flex items-center gap-2 font-semibold hover:bg-brand-950 px-4 py-2 rounded-xl transition-all justify-between"
                         :style="{ animationDelay: `${idx * 100}ms`, transitionDelay: `${idx * 100}ms` }"
                         @animationend.once="clearDelays"
                         @transitionend.once="clearDelays"
                     >
-                        <img
-                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Icon-round-Question_mark.svg/1200px-Icon-round-Question_mark.svg.png"
-                            class="size-6 text-brand-200 rounded-full border border-brand-900"
-                        />
+                        <img v-if="item.user" :src="item.user.image_url" class="size-6 text-brand-200 rounded-full border border-brand-900" />
+                        <img v-else class="size-6 bg-brand-950 rounded-full border border-brand-900 flex-none animate-pulse" />
+
                         <div class="truncate grow">
-                            <p class="truncate">{{ item.title }}</p>
-                            <p class="text-xs font-normal truncate">{{ item.username }}</p>
+                            <p class="truncate text-sm">{{ item.title }}</p>
+                            <p v-if="item.user" class="text-xs font-normal truncate">{{ item.user?.username }}</p>
+                            <p v-else class="text-xs font-normal truncate bg-brand-900 h-2.5 animate-pulse rounded-xl" />
                         </div>
-                        <p class="text-xs flex-none">{{ timeAgo(item.time_ago) }}</p>
-                    </RouterLink>
+                        <p v-if="item.created_at" class="text-xs flex-none">{{ messengerStyleTime(item.created_at) }}</p>
+                    </a>
                 </DataTransition>
             </div>
 
@@ -168,7 +172,7 @@ import OtherLinksLoader from './OtherLinksLoader.vue'
 
 import { useRoute } from 'vue-router'
 import { useNavigationStore } from '@/stores/navigationStore'
-import { clearDelays, timeAgo } from '@/utils/utils'
+import { clearDelays, messengerStyleTime, timeAgo } from '@/utils/utils'
 
 const $navigationStore = useNavigationStore()
 

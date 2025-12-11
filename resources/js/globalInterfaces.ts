@@ -1,6 +1,8 @@
 export interface User {
-    avatar_url: string
+    id: string
     username: string
+    image_url: string
+    created_at: string
 }
 
 export interface Post {
@@ -16,15 +18,18 @@ export interface Post {
 
 // SECTION: FROM API
 export interface RecentCollection {
+    id: string
     title: string
-    link: string
+    user?: User
+    created_at: string
 }
 
 export interface RecentForum {
+    id: string
     title: string
-    link: string
-    time_ago: string
-    username: string
+    content?: string
+    created_at?: string
+    user?: User
 }
 
 export interface StoreConfig {
@@ -37,9 +42,10 @@ export interface Affiliate {
 }
 
 export interface Art {
+    id: string
     title: string
-    link: string
     preview_image: string
     audio_ogg?: string
     audio_mp3?: string
+    user?: User
 }
