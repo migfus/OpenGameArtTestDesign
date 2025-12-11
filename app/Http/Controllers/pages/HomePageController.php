@@ -140,11 +140,11 @@ class HomePageController extends Controller {
         // If not existed then create new temporary data (needs to reupdate later)
         else {
             // OPTIMIZE: maybe transfer to update instead
-            RecentCollection::create([
-                'id' => $id,
-                'title' => $title,
-                'user_id' => null
-            ]);
+            // RecentCollection::create([
+            //     'id' => $id,
+            //     'title' => $title,
+            //     'user_id' => null
+            // ]);
 
             return [
                 'id' => $id,
@@ -162,12 +162,12 @@ class HomePageController extends Controller {
             return RecentForum::where('id', $id)->with('user')->first()->toArray();
         } else {
             // OPTIMIZE: maybe transfer to update instead
-            RecentForum::create([
-                'id' => $id,
-                'user_id' => null,
-                'title' => $title,
-                'content' => null,
-            ]);
+            // RecentForum::create([
+            //     'id' => $id,
+            //     'user_id' => null,
+            //     'title' => $title,
+            //     'content' => null,
+            // ]);
 
             return [
                 'id' => $id,

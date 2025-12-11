@@ -57,12 +57,12 @@ export const useNavigationStore = defineStore('navigationStore', () => {
         // Checks if there's a null users, skip if none
         if (recent_forums_needs_an_update.length > 0) {
             console.log('recent_forum needs an update', recent_forums_needs_an_update)
-            updateRecentForums(recent_forums_needs_an_update[0].id)
+            createNewForum(recent_forums_needs_an_update[0].id)
         }
     }
 
-    async function updateRecentForums(id: string) {
-        const { data } = await api.put(`recent-forum/${id}`)
+    async function createNewForum(id: string) {
+        const { data } = await api.post(`recent-forum`, { id })
 
         const index = recent_forum.value.findIndex((item) => item.id === data.id)
 
@@ -80,12 +80,12 @@ export const useNavigationStore = defineStore('navigationStore', () => {
         // Checks if there's a null users, skip if none
         if (recent_collections_needs_an_update.length > 0) {
             console.log('recent_collections needs an update', recent_collections_needs_an_update)
-            updateRecentCollection(recent_collections_needs_an_update[0].id)
+            createRecentCollection(recent_collections_needs_an_update[0].id)
         }
     }
 
-    async function updateRecentCollection(id: string) {
-        const { data } = await api.put(`recent-collection/${id}`)
+    async function createRecentCollection(id: string) {
+        const { data } = await api.post(`recent-collection`, { id })
 
         const index = recent_collections.value.findIndex((item) => item.id === data.id)
 
