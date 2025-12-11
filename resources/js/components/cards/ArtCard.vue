@@ -28,7 +28,7 @@
                         />
 
                         <a
-                            :href="art.link"
+                            :href="art.id"
                             class="transition-all"
                             :style="{ animationDelay: `${200}ms`, transitionDelay: `${200}ms` }"
                             @animationend.once="clearDelays"
@@ -56,13 +56,25 @@
                     <div ref="waveform"></div>
                 </div>
 
-                <a href="#" class="p-2 flex gap-1 bg-linear-to-t from-brand-950 to-transparent rounded-b-xl flex-none">
-                    <img :src="art.preview_image" class="size-5 rounded-full border border-brand-950" />
-                    <p class="text-sm font-semibold truncate text-brand-200/75 group-hover:text-brand-200 transition-all">[username]</p>
+                <a
+                    v-if="art.user"
+                    :href="`https://opengameart.org/users/${art.user.id}`"
+                    class="p-2 flex gap-1 bg-linear-to-t from-brand-950 to-transparent rounded-b-xl flex-none"
+                >
+                    <img :src="art.user.image_url" class="size-5 rounded-full border border-brand-950" />
+
+                    <p class="text-sm font-semibold truncate text-brand-200/75 group-hover:text-brand-200 transition-all">
+                        {{ art.user?.username }}
+                    </p>
                 </a>
+
+                <div v-else class="p-2 flex gap-1 bg-linear-to-t from-brand-950 to-transparent rounded-b-xl flex-none">
+                    <div class="size-5 rounded-full bg-brand-950 animate-pulse" />
+                    <div class="animate-pulse bg-red-700 rounded-xl h-4" />
+                </div>
             </div>
         </div>
-        <a :href="`https://opengameart.org/${art.link}`" class="flex flex-col z-10">
+        <a :href="`https://opengameart.org/content/${art.id}`" class="flex flex-col z-10">
             <div class="flex justify-between">
                 <p class="font-bold truncate">{{ art.title }}</p>
 
@@ -77,11 +89,13 @@
                     </div>
                 </div>
             </div>
-            <p class="line-clamp-3 text-brand-200/50 group-hover:text-brand-200/75 transition-all">
-                Reprehenderit dolore culpa officia occaecat id eiusmod aliquip cillum cupidatat nisi consequat nisi cupidatat. Irure id consequat esse voluptate
-                Lorem. Pariatur minim quis cupidatat sit ut velit ad reprehenderit id id et voluptate. Lorem nulla incididunt elit ea ea amet proident non
-                mollit.
-            </p>
+            <div v-if="art.content" class="line-clamp-3 text-brand-200/50 group-hover:text-brand-200/75 transition-all text-sm" v-html="art.content" />
+
+            <div v-else class="rounded-lg flex gap-1 flex-col mt-2">
+                <div class="h-4 rounded-lg w-ful bg-brand-950 animate-pulse group-hover:bg-dark-001 transition-all" />
+                <div class="h-4 rounded-lg w-full bg-brand-950 animate-pulse group-hover:bg-dark-001 transition-all" />
+                <div class="h-4 rounded-lg w-full bg-brand-950 animate-pulse group-hover:bg-dark-001 transition-all" />
+            </div>
         </a>
 
         <div class="absolute h-full w-full rounded-2xl group-hover:bg-brand-950 transition-all group-hover:scale-[110%] z-0"></div>
@@ -126,7 +140,7 @@
                                 />
 
                                 <a
-                                    :href="art.link"
+                                    :href="art.id"
                                     class="transition-all"
                                     :style="{ animationDelay: `${200}ms`, transitionDelay: `${200}ms` }"
                                     @animationend.once="clearDelays"
@@ -193,6 +207,7 @@ import { clearDelays, getFileNameFromUrl } from '@/utils/utils'
 import BasicTransition from '../transitions/BasicTransition.vue'
 import AppButton from '../form/AppButton.vue'
 import { RouterLink } from 'vue-router'
+import { MenuItem } from '@headlessui/vue'
 
 const { art, idx } = defineProps<{
     art: Art

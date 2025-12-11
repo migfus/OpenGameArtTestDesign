@@ -1,6 +1,6 @@
 {
-  "_ArtCategorySection.vue_vue_type_script_setup_true_lang-BHhwQF2q.js": {
-    "file": "assets/ArtCategorySection.vue_vue_type_script_setup_true_lang-BHhwQF2q.js",
+  "_ArtCategorySection.vue_vue_type_script_setup_true_lang-B0Fe4fvI.js": {
+    "file": "assets/ArtCategorySection.vue_vue_type_script_setup_true_lang-B0Fe4fvI.js",
     "name": "ArtCategorySection.vue_vue_type_script_setup_true_lang",
     "imports": [
       "resources/js/app.ts"
@@ -11,7 +11,7 @@
     "src": "public/images/building.png"
   },
   "resources/css/app.css": {
-    "file": "assets/app-DEY5v82X.css",
+    "file": "assets/app-UJ6CzGZW.css",
     "src": "resources/css/app.css",
     "isEntry": true,
     "name": "app",
@@ -20,7 +20,7 @@
     ]
   },
   "resources/js/app.ts": {
-    "file": "assets/app-DngqbVHM.js",
+    "file": "assets/app-B23QKNKn.js",
     "name": "app",
     "src": "resources/js/app.ts",
     "isEntry": true,
@@ -35,30 +35,30 @@
     ]
   },
   "resources/js/pages/pages/explore/(Index).vue": {
-    "file": "assets/(Index)-DnlxUsBX.js",
+    "file": "assets/(Index)-rbqE0gUx.js",
     "name": "(Index)",
     "src": "resources/js/pages/pages/explore/(Index).vue",
     "isDynamicEntry": true,
     "imports": [
-      "_ArtCategorySection.vue_vue_type_script_setup_true_lang-BHhwQF2q.js",
+      "_ArtCategorySection.vue_vue_type_script_setup_true_lang-B0Fe4fvI.js",
       "resources/js/app.ts"
     ]
   },
   "resources/js/pages/pages/home/(Index).vue": {
-    "file": "assets/(Index)-BrkQ1bOr.js",
+    "file": "assets/(Index)-_RyzfGzh.js",
     "name": "(Index)",
     "src": "resources/js/pages/pages/home/(Index).vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.ts",
-      "_ArtCategorySection.vue_vue_type_script_setup_true_lang-BHhwQF2q.js"
+      "_ArtCategorySection.vue_vue_type_script_setup_true_lang-B0Fe4fvI.js"
     ],
     "css": [
       "assets/(Index)-Dtdw2zcG.css"
     ]
   },
   "resources/js/pages/pages/not-found/(Index).vue": {
-    "file": "assets/(Index)-B-JwIglw.js",
+    "file": "assets/(Index)-SNH9vXpx.js",
     "name": "(Index)",
     "src": "resources/js/pages/pages/not-found/(Index).vue",
     "isDynamicEntry": true,

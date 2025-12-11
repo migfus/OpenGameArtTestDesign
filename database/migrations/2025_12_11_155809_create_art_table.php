@@ -8,14 +8,14 @@ return new class extends Migration {
     public function up(): void {
         Schema::create('art', function (Blueprint $table) {
             $table->string('id')->primary();
-            $table->string('user_id')->nullable(); // null for 1st time fetch of data
+            $table->string('user_id')->nullable();
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users')
                 ->onDelete('cascade');
 
             $table->string('title');
-            $table->longText('content')->nullable(); // null for 1st time fetch of data
+            $table->longText('content')->nullable();
 
             $table->timestamps();
         });

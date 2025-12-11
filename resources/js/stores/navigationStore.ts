@@ -85,7 +85,7 @@ export const useNavigationStore = defineStore('navigationStore', () => {
     }
 
     async function createRecentCollection(id: string) {
-        const { data } = await api.post(`recent-collection`, { id })
+        const { data } = await api.post(`/collection`, { id })
 
         const index = recent_collections.value.findIndex((item) => item.id === data.id)
 
@@ -108,7 +108,7 @@ export const useNavigationStore = defineStore('navigationStore', () => {
     }
 
     async function updateWeeklyArts(id: string) {
-        const { data } = await api.put(`weekly-arts/${id}`)
+        const { data } = await api.post(`/art`, { id })
 
         const index = weekly_arts.value.findIndex((item) => item.id === data.id)
 

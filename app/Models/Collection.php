@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class RecentCollection extends Model {
+class Collection extends Model {
     protected $primaryKey = 'id';
     public $incrementing = false;
     protected $keyType = 'string';

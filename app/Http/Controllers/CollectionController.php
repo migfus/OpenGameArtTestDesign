@@ -2,15 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
-use App\Models\{RecentCollection, User};
+use App\Models\Collection;
+use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Symfony\Component\DomCrawler\Crawler;
 
-class RecentCollectionController extends Controller {
-
+class CollectionController extends Controller {
     public function store(Request $req) {
         $req->validate([
             'id' => ['required']
@@ -26,14 +25,16 @@ class RecentCollectionController extends Controller {
         $user_id = preg_replace('#^/users/#', '', $user_id);
 
         $title = $crawler->filterXPath("//div[@property='dc:title']//h2[1]")->text();
+        $content = $crawler->filterXPath("//div[@property='content:encoded']")->html();
 
         $recent_collection = [];
 
         // Check if user exists, if not create
         if (User::where('id', $user_id)->exists()) {
-            $recent_collection = RecentCollection::create([
+            $recent_collection = Collection::create([
                 'id' => $req->id,
                 'title' => $title,
+                'content' => $content,
                 'user_id' => $user_id,
                 'created_at' => $created_at
             ]);
@@ -51,10 +52,11 @@ class RecentCollectionController extends Controller {
                 'image_url' => $image_url
             ]);
 
-            $recent_collection = RecentCollection::create([
+            $recent_collection = Collection::create([
                 'id' => $req->id,
                 'user_id' => $user_id,
                 'title' => $title,
+                'content' => $content,
                 'created_at' => $created_at
             ]);
         }

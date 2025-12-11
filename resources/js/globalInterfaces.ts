@@ -44,8 +44,18 @@ export interface Affiliate {
 export interface Art {
     id: string
     title: string
+    content?: string
     preview_image: string
     audio_ogg?: string
     audio_mp3?: string
     user?: User
+}
+
+export interface Collection {
+    id: string
+    title: string
+    string: string
+
+    user?: User
+    arts?: Art[]
 }

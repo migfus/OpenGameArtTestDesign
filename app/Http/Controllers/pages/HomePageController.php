@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers\pages;
 
-use App\Models\RecentCollection;
+use App\Models\Art;
+use App\Models\Collection;
 use App\Models\RecentForum;
 use Illuminate\Support\Facades\Http;
 use Symfony\Component\DomCrawler\Crawler;
@@ -19,7 +20,7 @@ class HomePageController extends Controller {
                 $id =  preg_replace('#^/content/#', '', $node->attr('href'));
                 $title = trim($node->text());
 
-                return $this->processRecentData($id, $title);
+                return $this->processRecentCollections($id, $title);
             });
 
         $recent_forum = $crawler->filter('.view-new-forum-topics .view-content .item-list ul li')
@@ -63,26 +64,24 @@ class HomePageController extends Controller {
             $previewImgNode = $node->filter('.field-name-field-art-preview img');
             $playButtonNode = $node->filter('.play-button');
 
-            // title: string
-            // link: string
-            // preview_image: string [audio / image]
-            // audio_ogg?: string
-            // audio_mp3?: string
+            $id = preg_replace('#^/content/#', '', $titleNode->attr('href'));
+            // $user_id = null;
+            $title = trim($titleNode->text());
+            // $preview_image = $previewImgNode->attr('src');
 
-            $item = [
-                'title' => trim($titleNode->text()),
-                'link' => $titleNode->attr('href'),
-                'preview_image' => $previewImgNode->attr('src'),
-            ];
 
-            if ($playButtonNode->count()) {
-                $item['audio_ogg'] = $playButtonNode->attr('data-ogg-url');
-                $item['audio_mp3'] = $playButtonNode->attr('data-mp3-url');
-                return $item;
-            } else {
+            // return $this->processWeeklyArt($titleNode->attr('href'));
 
-                return $item;
-            }
+            // if ($playButtonNode->count()) {
+            //     $item['audio_ogg'] = $playButtonNode->attr('data-ogg-url');
+            //     $item['audio_mp3'] = $playButtonNode->attr('data-mp3-url');
+            //     return $item;
+            // } else {
+
+            //     return $item;
+            // }
+
+            return $this->processWeeklyArt($id, $title);
         });
 
         $new_arts = $crawler->filter('#block-views-art-block-6 .content .view-art .view-content .views-row')->each(function (Crawler $node) {
@@ -130,25 +129,20 @@ class HomePageController extends Controller {
     }
 
 
-    private function processRecentData(string $id, string $title) {
+    private function processRecentCollections(string $id, string $title) {
         $id = urldecode($id);
         // Checks if existed
         // If existed, just return the old data (complete than scraped)
-        if (RecentCollection::where('id', $id)->exists()) {
-            return RecentCollection::where('id', $id)->with('user')->first()->toArray();
+        if (Collection::where('id', $id)->exists()) {
+            return Collection::where('id', $id)->with('user')->first()->toArray();
         }
         // If not existed then create new temporary data (needs to reupdate later)
         else {
-            // OPTIMIZE: maybe transfer to update instead
-            // RecentCollection::create([
-            //     'id' => $id,
-            //     'title' => $title,
-            //     'user_id' => null
-            // ]);
 
             return [
                 'id' => $id,
                 'title' => $title,
+                'content' => null,
                 'user' => null,
             ];
         }
@@ -175,6 +169,24 @@ class HomePageController extends Controller {
                 'title'     => $title,
                 'created_at' => null,
                 'user'  => null,
+            ];
+        }
+    }
+
+    private function processWeeklyArt(string $id, string $title) {
+        $id = urldecode($id);
+        // Checks if existed
+        // If existed, just return the old data (complete than scraped)
+        if (Art::where('id', $id)->exists()) {
+            return Art::where('id', $id)->with('user')->first()->toArray();
+        }
+        // If not existed then create new temporary data (needs to reupdate later)
+        else {
+
+            return [
+                'id' => $id,
+                'title' => $title,
+                'user' => null,
             ];
         }
     }
