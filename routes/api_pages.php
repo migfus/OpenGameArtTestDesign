@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AffiliateController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\pages\HomePageController;
@@ -13,4 +14,5 @@ Route::group(['prefix' => '', 'as' => 'pages.'], function () {
     Route::resource('/art', ArtController::class)->only(['store']);
     Route::resource('/recent-forum', RecentForumController::class)->only(['store']);
     Route::resource('/collection', CollectionController::class)->only(['store']);
+    Route::resource('/affiliate', AffiliateController::class)->only(['store']);
 });

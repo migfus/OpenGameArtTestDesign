@@ -42,10 +42,14 @@ export const useNavigationStore = defineStore('navigationStore', () => {
 
             console.log('recent_forum: ', recent_forum.value)
 
-            // Check Recent collection if needed an update
+            // Checks Recent collection if needs an update
             checkRecentCollection()
+            // Checks Recent forums if needs an update
             checkRecentForums()
+            // Checks Weekly Arts if needs an update
             checkWeeklyArts()
+            // Checks Affiliates if needs an update
+            checkAffiliates()
         } catch (err) {
             alert('API Error')
         }
@@ -117,6 +121,29 @@ export const useNavigationStore = defineStore('navigationStore', () => {
             weekly_arts.value.splice(index, 1, data)
 
             checkWeeklyArts()
+        }
+    }
+
+    function checkAffiliates() {
+        // Checks if there's a null image_url, skip if none
+        const affiliates_that_needs_updates = affiliates.value.filter((item: Affiliate) => item.created_at == undefined)
+
+        if (affiliates_that_needs_updates.length > 0) {
+            console.log('affiliates needs an update', affiliates_that_needs_updates)
+            updateAffiliate(affiliates_that_needs_updates[0].id, affiliates_that_needs_updates[0].title)
+        }
+    }
+
+    async function updateAffiliate(id: string, title: string) {
+        const { data } = await api.post(`/affiliate`, { id, title })
+
+        const index = affiliates.value.findIndex((item) => item.id === data.id)
+
+        if (index !== -1) {
+            // Replace the entire item
+            affiliates.value.splice(index, 1, data)
+
+            checkAffiliates()
         }
     }
 

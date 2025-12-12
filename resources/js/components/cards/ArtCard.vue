@@ -2,7 +2,7 @@
     <div :class="['flex flex-col gap-2 cursor-pointer group relative']">
         <div
             class="w-full h-38 relative bg-cover rounded-2xl border-2 border-brand-950 flex flex-col justify-end z-10 bg-dark-001 cursor-default"
-            :style="`background-image: url(${art.preview_image});`"
+            :style="`background-image: url(${art.user ? art.user.image_url : art.preview_image});`"
         >
             <div class="flex flex-col h-full justify-between">
                 <div class="p-2 flex gap-1 justify-end relative">
@@ -59,13 +59,25 @@
                 <a
                     v-if="art.user"
                     :href="`https://opengameart.org/users/${art.user.id}`"
-                    class="p-2 flex gap-1 bg-linear-to-t from-brand-950 to-transparent rounded-b-xl flex-none"
+                    class="p-2 flex gap-1 bg-linear-to-t from-dark-001 to-transparent rounded-b-xl justify-between h-12 items-end"
                 >
-                    <img :src="art.user.image_url" class="size-5 rounded-full border border-brand-950" />
+                    <div class="flex gap-2 truncate">
+                        <img :src="art.user.image_url" class="size-5 rounded-full border border-brand-950" />
+                        <p class="text-sm font-semibold truncate text-brand-200/75 group-hover:text-brand-200 transition-all">
+                            {{ art.user?.username }}
+                        </p>
+                    </div>
 
-                    <p class="text-sm font-semibold truncate text-brand-200/75 group-hover:text-brand-200 transition-all">
-                        {{ art.user?.username }}
-                    </p>
+                    <div class="flex items-center gap-2">
+                        <div class="flex items-center gap-1">
+                            <p class="text-sm">2k</p>
+                            <Icon icon="memory:heart" class="size-4" />
+                        </div>
+                        <div class="flex items-center gap-1">
+                            <p class="text-sm">2k</p>
+                            <Icon icon="memory:chat" class="size-4" />
+                        </div>
+                    </div>
                 </a>
 
                 <div v-else class="p-2 flex gap-1 bg-linear-to-t from-brand-950 to-transparent rounded-b-xl flex-none">
@@ -75,19 +87,8 @@
             </div>
         </div>
         <a :href="`https://opengameart.org/content/${art.id}`" class="flex flex-col z-10">
-            <div class="flex justify-between">
+            <div class="flex justify-between gap-2">
                 <p class="font-bold truncate">{{ art.title }}</p>
-
-                <div class="flex gap-2 items-center">
-                    <div class="flex items-center gap-1">
-                        <p class="text-xs">2k</p>
-                        <Icon icon="memory:chat" class="size-5" />
-                    </div>
-                    <div class="flex items-center gap-1">
-                        <p class="text-xs">888</p>
-                        <Icon icon="memory:heart" class="size-5" />
-                    </div>
-                </div>
             </div>
             <div v-if="art.content" class="line-clamp-3 text-brand-200/50 group-hover:text-brand-200/75 transition-all text-sm" v-html="art.content" />
 
@@ -166,10 +167,6 @@
                                     <p class="text-xs">2k</p>
                                     <Icon icon="memory:chat" class="size-5" />
                                 </div>
-                                <div class="flex items-center gap-1">
-                                    <p class="text-xs">888</p>
-                                    <Icon icon="memory:heart" class="size-5" />
-                                </div>
                             </div>
                         </div>
 
@@ -208,6 +205,7 @@ import BasicTransition from '../transitions/BasicTransition.vue'
 import AppButton from '../form/AppButton.vue'
 import { RouterLink } from 'vue-router'
 import { MenuItem } from '@headlessui/vue'
+import { useResizeObserver } from '@vueuse/core'
 
 const { art, idx } = defineProps<{
     art: Art

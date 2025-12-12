@@ -37,8 +37,10 @@ export interface StoreConfig {
 }
 
 export interface Affiliate {
+    id: string // url
     title: string
-    link: string
+    image_url?: string
+    created_at?: string
 }
 
 export interface Art {

@@ -119,14 +119,18 @@
                 <DataTransition v-else>
                     <a
                         v-for="(item, idx) in $navigationStore.affiliates"
-                        :a="item.link"
+                        :a="item.id"
                         @click="$emit('close_sidebar')"
                         class="flex items-center gap-2 font-semibold hover:bg-brand-950 px-4 py-2 rounded-xl transition-all justify-between cursor-pointer"
                         :style="{ animationDelay: `${idx * 100}ms`, transitionDelay: `${idx * 100}ms` }"
                         @animationend.once="clearDelays"
                         @transitionend.once="clearDelays"
                     >
-                        <p class="truncate">{{ item.title }}</p>
+                        <div class="flex gap-2 items-center truncate">
+                            <img v-if="item.image_url" :src="item.image_url" class="size-4 flex-none" />
+                            <Icon v-else icon="memory:arrow-right-circle" class="size-4 flex-none" />
+                            <p class="truncate text-sm">{{ item.title }}</p>
+                        </div>
                     </a>
                 </DataTransition>
             </div>

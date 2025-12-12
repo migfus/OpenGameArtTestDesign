@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\pages;
 
+use App\Models\Affiliate;
 use App\Models\Art;
 use App\Models\Collection;
 use App\Models\RecentForum;
@@ -34,10 +35,7 @@ class HomePageController extends Controller {
         $affiliates = $crawler->filter('.view-links .view-content .item-list ul li')
             ->each(function (Crawler $node) {
                 $aTag = $node->filter('a');
-                return [
-                    'title' => trim($aTag->text()),
-                    'href'  => $aTag->attr('href'),
-                ];
+                return $this->getAffiliateFromDatabaseIfExisted($aTag->attr('href'), trim($aTag->text()));
             });
 
         $posts = $crawler->filter('.view-blog .view-content .views-row')->each(function (Crawler $node) {
@@ -189,5 +187,17 @@ class HomePageController extends Controller {
                 'user' => null,
             ];
         }
+    }
+
+    private function getAffiliateFromDatabaseIfExisted(string $id, string $title) {
+        if (Affiliate::where('id', $id)->exists()) {
+            return Affiliate::where('id', $id)->first()->toArray();
+        }
+
+        return [
+            'id' => $id,
+            'title' => $title,
+            'image_url' => null,
+        ];
     }
 }
