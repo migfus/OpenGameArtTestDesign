@@ -67,8 +67,30 @@ class HomePageController extends Controller {
             $title = trim($titleNode->text());
             // $preview_image = $previewImgNode->attr('src');
 
+            return $this->getArtsFromDatabaseIfExists($id, $title);
+        });
 
-            // return $this->processWeeklyArt($titleNode->attr('href'));
+        $new_arts = $crawler->filter('#block-views-art-block-6 .content .view-art .view-content .views-row')->each(function (Crawler $node) {
+            $titleNode = $node->filter('.field-name-title a');
+            $previewImgNode = $node->filter('.field-name-field-art-preview img');
+            $playButtonNode = $node->filter('.play-button');
+
+            $id = preg_replace('#^/content/#', '', $titleNode->attr('href'));
+            $title = trim($titleNode->text());
+
+            return $this->getArtsFromDatabaseIfExists($id, $title);
+
+            // title: string
+            // link: string
+            // preview_image: string [audio / image]
+            // audio_ogg?: string
+            // audio_mp3?: string
+
+            // $item = [
+            //     'title' => trim($titleNode->text()),
+            //     'link' => $titleNode->attr('href'),
+            //     'preview_image' => $previewImgNode->attr('src'),
+            // ];
 
             // if ($playButtonNode->count()) {
             //     $item['audio_ogg'] = $playButtonNode->attr('data-ogg-url');
@@ -78,35 +100,6 @@ class HomePageController extends Controller {
 
             //     return $item;
             // }
-
-            return $this->processWeeklyArt($id, $title);
-        });
-
-        $new_arts = $crawler->filter('#block-views-art-block-6 .content .view-art .view-content .views-row')->each(function (Crawler $node) {
-            $titleNode = $node->filter('.field-name-title a');
-            $previewImgNode = $node->filter('.field-name-field-art-preview img');
-            $playButtonNode = $node->filter('.play-button');
-
-            // title: string
-            // link: string
-            // preview_image: string [audio / image]
-            // audio_ogg?: string
-            // audio_mp3?: string
-
-            $item = [
-                'title' => trim($titleNode->text()),
-                'link' => $titleNode->attr('href'),
-                'preview_image' => $previewImgNode->attr('src'),
-            ];
-
-            if ($playButtonNode->count()) {
-                $item['audio_ogg'] = $playButtonNode->attr('data-ogg-url');
-                $item['audio_mp3'] = $playButtonNode->attr('data-mp3-url');
-                return $item;
-            } else {
-
-                return $item;
-            }
         });
 
         return response()->json([
@@ -171,12 +164,12 @@ class HomePageController extends Controller {
         }
     }
 
-    private function processWeeklyArt(string $id, string $title) {
+    private function getArtsFromDatabaseIfExists(string $id, string $title) {
         $id = urldecode($id);
         // Checks if existed
         // If existed, just return the old data (complete than scraped)
         if (Art::where('id', $id)->exists()) {
-            return Art::where('id', $id)->with('user')->first()->toArray();
+            return Art::where('id', $id)->with(['user', 'artCategory'])->first()->toArray();
         }
         // If not existed then create new temporary data (needs to reupdate later)
         else {

@@ -6,9 +6,10 @@
         >
             <div class="flex flex-col h-full justify-between">
                 <div class="p-2 flex gap-1 justify-end relative">
-                    <p class="bg-brand-950 px-2 rounded-xl text-sm">{{ art.audio_mp3 ? 'Music' : 'art' }}</p>
+                    <p v-if="art.art_category" class="bg-brand-950 px-2 rounded-xl text-sm">{{ art.art_category.name }}</p>
+                    <p v-else class="bg-brand-950 px-2 rounded-xl text-sm h-4 w-8"></p>
                 </div>
-                <div v-if="art.audio_mp3" class="flex justify-center">
+                <div v-if="art.art_category?.name == 'Music' || art.art_category?.name == 'Sound Effect'" class="flex justify-center">
                     <DataTransition v-if="is_playing" class="flex gap-2 items-center cursor-pointer">
                         <Icon
                             icon="memory:rotate-counterclockwise"
@@ -69,13 +70,13 @@
                     </div>
 
                     <div class="flex items-center gap-2">
-                        <div class="flex items-center gap-1">
-                            <p class="text-sm">2k</p>
-                            <Icon icon="memory:heart" class="size-4" />
+                        <div v-if="art.favorites_count" class="flex items-center gap-1">
+                            <p class="text-sm">{{ art.favorites_count }}</p>
+                            <Icon icon="memory:heart" class="size-3" />
                         </div>
                         <div class="flex items-center gap-1">
                             <p class="text-sm">2k</p>
-                            <Icon icon="memory:chat" class="size-4" />
+                            <Icon icon="memory:chat" class="size-3" />
                         </div>
                     </div>
                 </a>
@@ -113,12 +114,9 @@
                         <div class="flex justify-between py-2 text-brand-300 px-4 items-center">
                             <div class="truncate w-32 flex flex-col">
                                 <p class="font-semibold truncate">{{ art.title }}</p>
-                                <div class="flex gap-1">
-                                    <img
-                                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Icon-round-Question_mark.svg/1200px-Icon-round-Question_mark.svg.png"
-                                        class="size-4"
-                                    />
-                                    <p class="font-semibold truncate text-xs">[username]</p>
+                                <div class="flex gap-1 items-center">
+                                    <img :src="art.user?.image_url" class="size-4 rounded-full" />
+                                    <p class="font-semibold truncate text-sm">{{ art.user?.username }}</p>
                                 </div>
                             </div>
 

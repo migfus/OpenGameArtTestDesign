@@ -46,11 +46,14 @@ export interface Affiliate {
 export interface Art {
     id: string
     title: string
+    favorites_count: number
     content?: string
     preview_image: string
     audio_ogg?: string
     audio_mp3?: string
+
     user?: User
+    art_category?: ArtCategory
 }
 
 export interface Collection {
@@ -60,4 +63,9 @@ export interface Collection {
 
     user?: User
     arts?: Art[]
+}
+
+export interface ArtCategory {
+    id: number
+    name: string
 }

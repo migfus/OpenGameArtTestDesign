@@ -50,6 +50,7 @@ export const useNavigationStore = defineStore('navigationStore', () => {
             checkWeeklyArts()
             // Checks Affiliates if needs an update
             checkAffiliates()
+            checkNewArts()
         } catch (err) {
             alert('API Error')
         }
@@ -144,6 +145,29 @@ export const useNavigationStore = defineStore('navigationStore', () => {
             affiliates.value.splice(index, 1, data)
 
             checkAffiliates()
+        }
+    }
+
+    function checkNewArts() {
+        // Checks if there's a null image_url, skip if none
+        const new_arts_that_needs_update = new_arts.value.filter((item: Art) => item.user == undefined)
+
+        if (new_arts_that_needs_update.length > 0) {
+            console.log('new arts needs an update', new_arts_that_needs_update)
+            updateNewArt(new_arts_that_needs_update[0].id)
+        }
+    }
+
+    async function updateNewArt(id: string) {
+        const { data } = await api.post(`/art`, { id })
+
+        const index = new_arts.value.findIndex((item) => item.id === data.id)
+
+        if (index !== -1) {
+            // Replace the entire item
+            new_arts.value.splice(index, 1, data)
+
+            checkNewArts()
         }
     }
 

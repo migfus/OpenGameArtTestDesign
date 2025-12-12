@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Affiliate;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Symfony\Component\DomCrawler\Crawler;
@@ -11,19 +10,18 @@ use Symfony\Component\DomCrawler\Crawler;
 class AffiliateController extends Controller {
 
     public function store(Request $req) {
+        // STUB Vulnerability? 🤣
+        // STUB accepts any id (url), what could go wrong?
         $req->validate([
-            'id' => ['required'],
+            'id' => ['required'], // url
             'title' => ['required']
         ]);
 
-        // Scrape for forum
+        # Scrape for forum
         $body = Http::timeout(10)->get($req->id)->body();
         $crawler = new Crawler($body);
 
         // Checks any possible icon to find
-
-
-        // Fallback to default favicon.ico
         $image_url = $this->searchAllIcons($crawler);
 
         if (!Affiliate::where('id', $req->id)->exists()) {
