@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-col gap-4 lg:flex-row sm:p-4 py-4">
+    <div class="flex flex-col gap-4 lg:flex-row sm:p-4 py-4 2xl:max-w-[1580px] 2xl:mx-auto">
         <div class="flex-1 min-w-0 basis-0 flex flex-col gap-4">
             <!-- <div>
                 <p>Debug</p>

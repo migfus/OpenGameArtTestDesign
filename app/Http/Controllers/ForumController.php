@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\{RecentForum, User};
+use App\Models\RecentForum;
+use App\Scraper\AuthScraper;
 
 use Carbon\Carbon;
 use Illuminate\Http\{JsonResponse, Request};
@@ -10,6 +11,8 @@ use Illuminate\Support\Facades\Http;
 use Symfony\Component\DomCrawler\Crawler;
 
 class ForumController extends Controller {
+    public function __construct(private AuthScraper $authScraper) {}
+
     public function update(Request $req, string $id): JsonResponse {
         $body = Http::timeout(10)->get("https://opengameart.org/forumtopic/{$id}")->body();
         $crawler = new Crawler($body);
@@ -21,9 +24,7 @@ class ForumController extends Controller {
             'content' => $crawler->filterXPath("//div[@class='group-right right-column']/div[1]/div[1]/div[1]")->html(),
 
             'title' => $crawler->filterXPath("//div[@property='dc:title']//h2[1]")->text(),
-            'user_id' => User::where('url_username', $url_username)->exists() ?
-                User::where('url_username', $url_username)->first()->id :
-                $this->scrapeUserAndStore($url_username, $username, $req->bearerToken())->id,
+            'user_id' => $this->authScraper->resolveUserId($url_username, $username, $req->bearerToken()),
             'created_at' =>
             Carbon::createFromFormat(
                 'l, F j, Y - H:i',

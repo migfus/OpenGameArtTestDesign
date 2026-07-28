@@ -8,12 +8,15 @@ use App\Models\{
     UserSession
 };
 
+use App\Scraper\AuthScraper;
 use GuzzleHttp\Client;
 use GuzzleHttp\Cookie\CookieJar;
 use Illuminate\Http\{JsonResponse, Request};
 use Symfony\Component\DomCrawler\Crawler;
 
 class AuthController extends Controller {
+    public function __construct(private AuthScraper $authScraper) {}
+
     public function login(Request $req): JsonResponse {
         $req->validate([
             'username' => ['required'],
@@ -51,7 +54,7 @@ class AuthController extends Controller {
         $url_username = str_replace('/users/', '', $crawler->filter('.active a')->attr('href'));
         $username = $crawler->filter('.active a')->text();
 
-        $user_id =  $this->scrapeUserAndStore($url_username, $username, '')->id;
+        $user_id =  $this->authScraper->scrapeUserAndStore($url_username, $username, '')->id;
 
         foreach ($cookieJar->toArray() as $cookie) {
             $user_session = UserSession::create([
@@ -68,7 +71,7 @@ class AuthController extends Controller {
 
         $data['token'] = $user_session->id;
 
-        $crawler = $this->authenticate('https://opengameart.org/', $data['token']);
+        $crawler = $this->authScraper->authenticate('https://opengameart.org/', $data['token']);
 
         // dd($)
 
@@ -113,7 +116,7 @@ class AuthController extends Controller {
 
         // return response()->json();
 
-        $crawler = $this->authenticate('https://opengameart.org/user/' . $user_session->user->id . '/friends', $req->bearerToken());
+        $crawler = $this->authScraper->authenticate('https://opengameart.org/user/' . $user_session->user->id . '/friends', $req->bearerToken());
 
         dd(
             $crawler->filter(".view-friends .view-content .item-list ul li")->each(function (Crawler $node) {

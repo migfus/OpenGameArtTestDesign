@@ -1,5 +1,5 @@
 <template>
-    <div class="flex w-full justify-center relative">
+    <div class="flex w-full justify-center relative 2xl:max-w-[1580px] 2xl:mx-auto">
         <div class="mx-auto w-full max-w-sm lg:w-120 mt-16 z-10 bg-dark-001/90 backdrop-blur-sm p-6 py-8 sm:rounded-xl mb-32 border border-brand-950">
             <div class="flex flex-col gap-2 items-center">
                 <div class="rounded-lg bg-brand-950 p-4 border border-brand-900">

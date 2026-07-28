@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="2xl:max-w-[1580px] 2xl:mx-auto">
         <NotifyBanner />
         <!-- <CarouselCard /> -->
 

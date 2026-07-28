@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-col gap-4">
+    <div class="flex flex-col gap-4 2xl:max-w-[1580px] 2xl:mx-auto">
         <SearchCard />
         <ArtCategorySection title="Arts" more="/" />
     </div>

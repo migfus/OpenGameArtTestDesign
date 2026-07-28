@@ -20,8 +20,9 @@ import type {
 
 declare module 'vue-router' {
   interface TypesConfig {
-    ParamParsers:
-      | never
+    _ParamParsers: {}
+    RouteNamedMap: import('vue-router/auto-routes').RouteNamedMap
+    _RouteFileInfoMap: import('vue-router/auto-routes')._RouteFileInfoMap
   }
 }
 
@@ -111,17 +112,23 @@ declare module 'vue-router/auto-routes' {
         | '/'
       views:
         | never
+      pathParamNames:
+        | never
     }
     'resources/js/pages/[...page].vue': {
       routes:
         | '/[...page]'
       views:
         | never
+      pathParamNames:
+        | 'page'
     }
     'resources/js/pages/arts/index.vue': {
       routes:
         | '/arts/'
       views:
+        | never
+      pathParamNames:
         | never
     }
     'resources/js/pages/arts/[id].vue': {
@@ -129,11 +136,15 @@ declare module 'vue-router/auto-routes' {
         | '/arts/[id]'
       views:
         | never
+      pathParamNames:
+        | 'id'
     }
     'resources/js/pages/collections.vue': {
       routes:
         | '/collections'
       views:
+        | never
+      pathParamNames:
         | never
     }
     'resources/js/pages/dashboard/index.vue': {
@@ -141,11 +152,15 @@ declare module 'vue-router/auto-routes' {
         | '/dashboard/'
       views:
         | never
+      pathParamNames:
+        | never
     }
     'resources/js/pages/dashboard/account-settings.vue': {
       routes:
         | '/dashboard/account-settings'
       views:
+        | never
+      pathParamNames:
         | never
     }
     'resources/js/pages/faqs.vue': {
@@ -153,11 +168,15 @@ declare module 'vue-router/auto-routes' {
         | '/faqs'
       views:
         | never
+      pathParamNames:
+        | never
     }
     'resources/js/pages/login.vue': {
       routes:
         | '/login'
       views:
+        | never
+      pathParamNames:
         | never
     }
   }

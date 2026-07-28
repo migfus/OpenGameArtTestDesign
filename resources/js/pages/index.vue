@@ -1,8 +1,9 @@
 <template>
-    <div class="flex flex-col gap-4 mb-8">
+    <div class="flex flex-col gap-4 mb-8 2xl:max-w-[1580px] 2xl:mx-auto">
         <!-- <CarouselCard /> -->
         <HeroCard />
-        <ArtCategorySection :arts="weekly_arts" :loading="config.loading" title="Weekly Popular" more="https://opengameart.org/popular" />
+
+        <ArtCategorySection :arts="weekly_arts" :loading="config.loading" title="Weekly Popular" more="https://opengameart.org/popular" class=""/>
         <ArtCategorySection :arts="new_arts" :loading="config.loading" title="New Arts" more="https://opengameart.org/latest" />
 
         <PostCategorySection :posts="recent_posts" :loading="config.loading" />

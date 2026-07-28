@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\pages;
 
+use App\Http\Controllers\Controller;
 use App\Models\{Affiliate, Art, Collection, RecentForum};
+use App\Scraper\AuthScraper;
 
 use Symfony\Component\DomCrawler\Crawler;
 use Illuminate\Http\{JsonResponse, Request};
@@ -13,8 +15,10 @@ use GuzzleHttp\Cookie\CookieJar;
 class HomePageController extends Controller {
     protected $cache_duration = 5; // Cache duration in seconds
 
+    public function __construct(private AuthScraper $authScraper) {}
+
     public function index(Request $req): JsonResponse {
-        $crawler = $this->authenticate('https://opengameart.org', $req->bearerToken());
+        $crawler = $this->authScraper->authenticate('https://opengameart.org', $req->bearerToken());
 
         $recent_collections = $this->getRecentCollection($crawler);
 

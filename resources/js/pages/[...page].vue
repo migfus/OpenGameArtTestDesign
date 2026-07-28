@@ -1,5 +1,5 @@
 <template>
-    <div class="m-6 flex flex-col items-center gap-4">
+    <div class="m-6 flex flex-col items-center gap-4 2xl:max-w-[1580px] 2xl:mx-auto">
         <DataTransition class="flex flex-col gap-4">
             <img
                 :src="image"

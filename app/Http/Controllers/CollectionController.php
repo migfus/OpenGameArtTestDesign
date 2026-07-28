@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\{Collection, User};
+use App\Models\Collection;
+use App\Scraper\AuthScraper;
 
 use Carbon\Carbon;
 use Illuminate\Http\{JsonResponse, Request};
 use Symfony\Component\DomCrawler\Crawler;
 
 class CollectionController extends Controller {
+    public function __construct(private AuthScraper $authScraper) {}
+
     private function parseCreatedAt(string $rawDate): string {
         $dateText = trim((string) preg_replace('/\s+/', ' ', html_entity_decode($rawDate)));
 
@@ -20,7 +23,7 @@ class CollectionController extends Controller {
     }
 
     public function update(Request $req, string $id): JsonResponse {
-        $crawler = $this->authenticate("https://opengameart.org/content/{$id}", $req->bearerToken());
+        $crawler = $this->authScraper->authenticate("https://opengameart.org/content/{$id}", $req->bearerToken());
 
         $url_username = str_replace('/users/', '', $crawler->filterXPath("//a[@class='username']")->attr('href'));
         $username = $crawler->filterXPath("//a[@class='username']")->text();
@@ -28,9 +31,7 @@ class CollectionController extends Controller {
 
             'title' => $crawler->filterXPath("//div[@property='dc:title']//h2[1]")->text(),
             'content' => $crawler->filterXPath("//div[@class='group-right right-column']/div[2]")->html(),
-            'user_id' => User::where('url_username', $url_username)->exists() ?
-                User::where('url_username', $url_username)->first()->id :
-                $this->scrapeUserAndStore($url_username, $username, $req->bearerToken())->id,
+            'user_id' => $this->authScraper->resolveUserId($url_username, $username, $req->bearerToken()),
             'created_at' =>
             Carbon::createFromFormat(
                 'l, F j, Y - H:i',
@@ -47,7 +48,7 @@ class CollectionController extends Controller {
     }
 
     public function index(Request $req): JsonResponse {
-        $crawler = $this->authenticate("https://opengameart.org/collections", $req->bearerToken(), false);
+        $crawler = $this->authScraper->authenticate("https://opengameart.org/collections", $req->bearerToken(), false);
 
         $collections = [];
 
