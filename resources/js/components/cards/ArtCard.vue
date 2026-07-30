@@ -3,7 +3,7 @@
         <div :class="['w-full h-38 relative bg-cover rounded-2xl border-2 border-brand-950 flex flex-col justify-end z-10 bg-dark-001 cursor-default']">
             <!-- SECTION: MUSIC / SOUND VISUAL PREVIEW -->
             <div v-if="art.art_category.name == 'Music' || art.art_category.name == 'Sound Effect'" class="absolute h-full w-full">
-                <div v-if="!art.user?.image_url" class="bg-brand-950/50 h-full w-full rounded-xl bg-linear-30 to-[#0c1314] from-[#271c38]" />
+                <div v-if="!art.user?.image_url" class="bg-brand-950 h-full w-full rounded-xl bg-linear-30 to-[#0c1314] from-[#271c38]" />
                 <img v-else :src="art.user?.image_url" class="w-full h-full object-cover rounded-2xl pixelated-img" />
             </div>
 
@@ -36,7 +36,7 @@
                 </div>
 
                 <!-- SECTION: MUSIC / SFX -->
-                <div v-if="art.art_category?.name == 'Music' || art.art_category?.name == 'Sound Effect'" class="flex justify-center">
+                <div v-if="art.art_category?.name == 'Music' || art.art_category?.name == 'Sound Effect'" class="flex justify-center z-10">
                     <DataTransition v-if="is_playing" class="flex gap-2 items-center cursor-pointer">
                         <Icon
                             icon="memory:rotate-counterclockwise"
@@ -74,7 +74,7 @@
                     <Icon
                         v-else
                         icon="memory:play"
-                        class="size-18 bg-brand-900 rounded-full hover:scale-110 transition-all p-2 cursor-pointer"
+                        class="size-18 bg-brand-900 rounded-full hover:scale-110 transition-all p-2 cursor-pointer z-10"
                         @click.stop="playAudio(art.art_previews[0].url)"
                         @mousedown.stop
                     />
