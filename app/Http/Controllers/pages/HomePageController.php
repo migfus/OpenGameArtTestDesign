@@ -40,14 +40,8 @@ class HomePageController extends Controller {
             'weekly_arts' => array_slice($weekly_arts, 0, 12),
             'new_arts' => array_slice($new_arts, 0, 12),
             'posts' => $posts,
-            'donation_monthly_value' => $this->getDonation($crawler),
+            'donation_monthly_value' => $this->getDonation(),
         ]);
-        // } catch (\Exception $e) {
-        //     return response([
-        //         'content' => $e,
-        //         'title' => '500 Error',
-        //     ], 500);
-        // }
     }
 
     private function getRecentCollection(Crawler $crawler): array {
@@ -150,9 +144,12 @@ class HomePageController extends Controller {
                 $playButtonNode = $node->filter('.play-button');
 
                 $id = preg_replace('#^/content/#', '', $titleNode->attr('href'));
-                // $user_id = null;
                 $title = trim($titleNode->text());
-                // $preview_image = $previewImgNode->attr('src');
+
+                $image_preview = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=';
+                if($previewImgNode->filter('img')->count()) {
+                    $image_preview = $previewImgNode->filter('img')->attr('src');
+                }
 
                 $previews = [];
                 $type = 'Art';
@@ -165,7 +162,7 @@ class HomePageController extends Controller {
                     $previews[] = $previewImgNode->attr('src');
                 }
 
-                return $this->getArtsFromDatabaseIfExists($id, $title, $previews, $type, $preview_type);
+                return $this->getArtsFromDatabaseIfExists($id, $title, $previews, $type, $preview_type, $image_preview);
             });
         });
     }
@@ -180,6 +177,11 @@ class HomePageController extends Controller {
                 $id = preg_replace('#^/content/#', '', $titleNode->attr('href'));
                 $title = trim($titleNode->text());
 
+                $image_preview = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=';
+                if($previewImgNode->filter('img')->count()) {
+                    $image_preview = $previewImgNode->filter('img')->attr('src');
+                }
+
                 $previews = [];
                 $type = 'Art';
                 $preview_type = 'image';
@@ -191,7 +193,7 @@ class HomePageController extends Controller {
                     $previews[] = $previewImgNode->attr('src');
                 }
 
-                return $this->getArtsFromDatabaseIfExists($id, $title, $previews, $type, $preview_type);
+                return $this->getArtsFromDatabaseIfExists($id, $title, $previews, $type, $preview_type, $image_preview);
 
                 // title: string
                 // link: string
@@ -217,15 +219,29 @@ class HomePageController extends Controller {
         });
     }
 
-    private function getArtsFromDatabaseIfExists(string $id, string $title, array $previews, string $type, string $preview_type): array {
+    private function getArtsFromDatabaseIfExists(string $id, string $title, array $previews, string $type, string $preview_type, string $image_preview): array {
         $id = urldecode($id);
         // Checks if existed
         // If existed, just return the old data (complete than scraped)
         if (Art::where('id', $id)->exists()) {
-            return Art::where('id', $id)->with(['user', 'art_category', 'art_previews.art_preview_category', 'files', 'art_comments.user'])->first()->toArray();
+            return Art::query()
+                ->where('id', $id)
+                ->with(['user', 'art_category', 'art_previews.art_preview_category', 'files', 'art_comments.user'])
+                ->first()
+                ->toArray();
         }
         // If not existed then create new temporary data (needs to reupdate later)
         else {
+            Art::create([
+                'id' => $id,
+                'title' => $title,
+                'user_id' => null,
+                'content' => '',
+                'art_category_id' => null,
+                'favorites_count' => 0,
+                'comments_count' => 0,
+                'image_preview' => $image_preview
+            ]);
 
             return [
                 'id' => $id,
@@ -236,15 +252,7 @@ class HomePageController extends Controller {
                 'art_category' => [
                     'name' => $type
                 ],
-                'art_previews' => [
-                    [
-                        'url' => $previews,
-                        'id' => 1,
-                        'art_preview_category' => [
-                            'name' => $preview_type,
-                        ],
-                    ]
-                ],
+                'previews' => $previews,
                 'art_comments' => [],
                 'files' => [],
 

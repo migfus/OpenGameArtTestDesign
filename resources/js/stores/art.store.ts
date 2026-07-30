@@ -73,10 +73,6 @@ export const useArtStore = defineStore('ArtStore', () => {
             return item.updated_at == undefined ? true : Math.abs(moment(item.updated_at).diff(moment(), 'hours', true)) >= ttl ? true : false
         })
 
-        // return null
-
-        // alert(JSON.stringify(weekly_arts_that_needs_refresh))
-
         await Promise.all(
             weekly_arts_that_needs_refresh.map(async (item: Art) => {
                 const data = await refreshArt(item.id)

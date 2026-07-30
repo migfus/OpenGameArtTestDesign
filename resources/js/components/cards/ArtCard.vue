@@ -3,7 +3,7 @@
         <div :class="['w-full h-38 relative bg-cover rounded-2xl border-2 border-brand-950 flex flex-col justify-end z-10 bg-dark-001 cursor-default']">
             <!-- SECTION: MUSIC / SOUND VISUAL PREVIEW -->
             <div v-if="art.art_category.name == 'Music' || art.art_category.name == 'Sound Effect'" class="absolute h-full w-full">
-                <Icon v-if="!art.user?.image_url" icon="pixelarticons:annoyed" class="size-8" />
+                <div v-if="!art.user?.image_url" class="bg-brand-950/50 h-full w-full rounded-xl bg-linear-30 to-[#0c1314] from-[#271c38]" />
                 <img v-else :src="art.user?.image_url" class="w-full h-full object-cover rounded-2xl pixelated-img" />
             </div>
 
@@ -11,7 +11,7 @@
             <RouterLink
                 v-else-if="art.art_previews.length > 0"
                 :to="`/arts/${art.id}`"
-                class="bg-brand-950/50 h-38 w-full object-cover rounded-2xl flex absolute"
+                class="bg-brand-950/50 h-38 w-full object-cover rounded-2xl flex absolute "
             >
                 <div class="absolute bottom-0">
                     <img
@@ -20,52 +20,9 @@
                         class="absolute h-full w-full object-cover rounded-2xl z-10"
                     />
                 </div>
-                <div v-if="art.art_previews.length > 4" class="grid grid-cols-2 gap-1 w-full">
-                    <div class="rounded-tl-2xl overflow-hidden">
-                        <img :src="art.art_previews[0].url" class="object-cover w-full h-full pixelated-img" />
-                    </div>
-                    <div class="rounded-tr-2xl overflow-hidden">
-                        <img :src="art.art_previews[1].url" class="object-cover w-full h-full pixelated-img" />
-                    </div>
-                    <div class="rounded-bl-2xl overflow-hidden">
-                        <img :src="art.art_previews[2].url" class="object-cover w-full h-full rounded-bl-2xl pixelated-img" />
-                    </div>
-                    <div class="rounded-br-2xl overflow-hidden relative">
-                        <img :src="art.art_previews[3].url" class="object-cover w-full h-full rounded-br-2xl pixelated-img" />
 
-                        <div
-                            class="absolute top-0 w-full h-full text-md text-light-002 bg-brand-950/75 size-12 rounded-br-2xl flex items-center justify-center"
-                        >
-                            <p>+{{ art.art_previews.length - 4 }}</p>
-                        </div>
-                    </div>
-                </div>
-                <div v-else-if="art.art_previews.length == 4" class="grid grid-cols-2 gap-1 w-full">
-                    <img :src="art.art_previews[0].url" class="object-cover w-full h-18 rounded-tl-2xl pixelated-img" />
-                    <img :src="art.art_previews[1].url" class="object-cover w-full h-18 rounded-tr-2xl pixelated-img" />
-                    <img :src="art.art_previews[2].url" class="object-cover w-full h-18 rounded-bl-2xl pixelated-img" />
-                    <img :src="art.art_previews[3].url" class="object-cover w-full h-18 rounded-br-2xl pixelated-img" />
-                </div>
-                <div v-else-if="art.art_previews.length == 3" class="grid grid-cols-2 gap-1 h-full w-full">
-                    <div class="rounded-l-2xl overflow-hidden row-span-2">
-                        <img :src="art.art_previews[0].url" class="row-span-2 pixelated-img w-full h-full object-cover" />
-                    </div>
-                    <div class="rounded-tr-2xl overflow-hidden">
-                        <img :src="art.art_previews[1].url" class="object-cover w-full h-full pixelated-img" />
-                    </div>
-
-                    <div class="rounded-br-2xl overflow-hidden">
-                        <img :src="art.art_previews[2].url" class="object-cover w-full h-full pixelated-img" />
-                    </div>
-                </div>
-                <div v-else-if="art.art_previews.length == 2" class="grid grid-cols-2 gap-1 h-full w-full">
-                    <div v-for="item in art.art_previews" class="first:rounded-l-2xl last:rounded-r-2xl overflow-hidden">
-                        <img :src="item.url" class="w-full h-full object-cover pixelated-img" />
-                    </div>
-                </div>
-
-                <div v-else class="w-full h-full overflow-hidden rounded-2xl">
-                    <img :src="art.art_previews[0].url" class="h-full w-full object-cover pixelated-img" />
+                <div class="w-full h-full overflow-hidden rounded-2xl aspect-square">
+                    <img :src="art.image_preview" class="h-full w-full object-cover pixelated-img" />
                 </div>
             </RouterLink>
 
@@ -134,6 +91,7 @@
                 >
                     <div class="flex gap-2 truncate items-center">
                         <Icon v-if="!art.user" icon="pixelarticons:annoyed" class="size-4" />
+                        <Icon v-else-if="!art.user.image_url" icon="pixelarticons:avatar-circle-sharp" class="size-5 rounded-full  text-brand-200"/>
                         <img v-else :src="art.user.image_url" class="size-5 rounded-full border border-brand-950" />
                         <p v-if="!art.user" class="text-sm font-semibold truncate text-brand-200 group-hover:text-brand-100 transition-all">Anonymous</p>
                         <p v-else class="text-sm font-semibold truncate text-brand-200 group-hover:text-brand-100 transition-all">

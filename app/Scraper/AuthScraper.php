@@ -36,7 +36,14 @@ class AuthScraper {
 			$crawler = $this->authenticate("https://opengameart.org/users/" . $url_username, $token);
 
 			$user_id = str_replace('/collections', '', str_replace('/user/', '', $crawler->filter('div#right>div>ul>li:nth-of-type(2)>a')->attr('href')));
-			$image_url = $crawler->filterXPath("//img[@typeof='foaf:Image']")->attr('src');
+
+            $image_url = null;
+
+            if($crawler->filterXPath("//a[starts-with(@href, '/users/')]/img[@typeof='foaf:Image']")->count() > 0) {
+                $image_url = $crawler
+                    ->filterXPath("//a[starts-with(@href, '/users/')]/img[@typeof='foaf:Image']")
+                    ->attr('src');
+            }
 
 			return User::firstOrCreate(['id' => $user_id], [
 				'url_username' => $url_username,

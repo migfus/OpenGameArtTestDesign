@@ -42,6 +42,7 @@ export interface Art extends LaravelTimestamp {
     favorites_count: number
     content?: string
     art_previews: ArtPreview[]
+    image_preview?: string
     audio_ogg?: string
     audio_mp3?: string
     comments_count: number

@@ -26,6 +26,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Affiliate whereImageUrl($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Affiliate whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Affiliate whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
 	class Affiliate extends \Eloquent {}
 }
@@ -65,6 +66,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Art whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Art whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Art whereUserId($value)
+ * @mixin \Eloquent
  */
 	class Art extends \Eloquent {}
 }
@@ -82,6 +84,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|ArtCategory whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|ArtCategory whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|ArtCategory whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
 	class ArtCategory extends \Eloquent {}
 }
@@ -105,6 +108,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|ArtComment whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|ArtComment whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|ArtComment whereUserId($value)
+ * @mixin \Eloquent
  */
 	class ArtComment extends \Eloquent {}
 }
@@ -127,6 +131,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|ArtPreview whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|ArtPreview whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|ArtPreview whereUrl($value)
+ * @mixin \Eloquent
  */
 	class ArtPreview extends \Eloquent {}
 }
@@ -144,6 +149,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|ArtPreviewCategory whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|ArtPreviewCategory whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|ArtPreviewCategory whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
 	class ArtPreviewCategory extends \Eloquent {}
 }
@@ -163,6 +169,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|ArtType whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|ArtType whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|ArtType whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
 	class ArtType extends \Eloquent {}
 }
@@ -183,6 +190,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Collection whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Collection whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Collection whereUserId($value)
+ * @mixin \Eloquent
  */
 	class Collection extends \Eloquent {}
 }
@@ -206,6 +214,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|File whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|File whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|File whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
 	class File extends \Eloquent {}
 }
@@ -227,6 +236,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|License whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|License whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|License whereUrl($value)
+ * @mixin \Eloquent
  */
 	class License extends \Eloquent {}
 }
@@ -242,6 +252,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|PostPreview whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|PostPreview whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|PostPreview whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
 	class PostPreview extends \Eloquent {}
 }
@@ -264,6 +275,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|RecentForum whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|RecentForum whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|RecentForum whereUserId($value)
+ * @mixin \Eloquent
  */
 	class RecentForum extends \Eloquent {}
 }
@@ -281,6 +293,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Tag whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Tag whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Tag whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
 	class Tag extends \Eloquent {}
 }
@@ -305,6 +318,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereUrlUsername($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereUsername($value)
+ * @mixin \Eloquent
  */
 	class User extends \Eloquent {}
 }
@@ -337,6 +351,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|UserSession whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|UserSession whereUserId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|UserSession whereValue($value)
+ * @mixin \Eloquent
  */
 	class UserSession extends \Eloquent {}
 }
