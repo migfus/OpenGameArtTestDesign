@@ -29,7 +29,7 @@
             <!-- SECTION: OVERLAY -->
             <div class="flex flex-col h-full justify-between">
                 <div class="p-2 flex gap-1 justify-end relative">
-                    <p v-if="art.art_category" class="bg-brand-950/70 px-2 rounded-xl text-xs font-semibold py-1 backdrop-blur-lg">
+                    <p v-if="art.art_category" class="bg-brand-950 px-2 rounded-xl text-xs font-semibold py-1">
                         {{ art.art_category.name }}
                     </p>
                     <p v-else class="bg-brand-950 px-2 rounded-xl text-sm h-4 w-8"></p>
@@ -40,7 +40,7 @@
                     <DataTransition v-if="is_playing" class="flex gap-2 items-center cursor-pointer">
                         <Icon
                             icon="memory:rotate-counterclockwise"
-                            class="size-12 bg-brand-900/90 backdrop-blur-sm rounded-full hover:scale-110 transition-all p-2"
+                            class="size-12 bg-brand-900 rounded-full hover:scale-110 transition-all p-2"
                             @click.stop="stopAudio()"
                             @mousedown.stop
                             :style="{ animationDelay: `${100}ms`, transitionDelay: `${100}ms` }"
@@ -50,7 +50,7 @@
 
                         <Icon
                             icon="memory:pause"
-                            class="size-18 bg-brand-900/90 backdrop-blur-sm rounded-full hover:scale-110 transition-all p-2"
+                            class="size-18 bg-brand-900 rounded-full hover:scale-110 transition-all p-2"
                             @click.stop="pauseAudio()"
                             @mousedown.stop
                         />
@@ -64,7 +64,7 @@
                         >
                             <Icon
                                 icon="memory:arrow-right-box"
-                                class="size-12 bg-brand-900/90 backdrop-blur-sm rounded-full hover:scale-110 transition-all p-2"
+                                class="size-12 bg-brand-900rounded-full hover:scale-110 transition-all p-2"
                                 @click.stop="forwardTime()"
                                 @mousedown.stop
                             />
@@ -74,7 +74,7 @@
                     <Icon
                         v-else
                         icon="memory:play"
-                        class="size-18 bg-brand-900/90 backdrop-blur-sm rounded-full hover:scale-110 transition-all p-2 cursor-pointer"
+                        class="size-18 bg-brand-900 rounded-full hover:scale-110 transition-all p-2 cursor-pointer"
                         @click.stop="playAudio(art.art_previews[0].url)"
                         @mousedown.stop
                     />
@@ -165,7 +165,7 @@
                         <div
                             :class="[
                                 show_player && is_playing ? 'translate-y-0 ' : 'translate-y-16 md:translate-y-0',
-                                'fixed bg-brand-950/90 backdrop-blur-sm w-full py-6 px-3 z-10 flex flex-col gap-2 transition-all md:rounded-2xl md:w-lg bottom-45 md:bottom-25'
+                                'fixed bg-brand-950 w-full py-6 px-3 z-10 flex flex-col gap-2 transition-all md:rounded-2xl md:w-lg bottom-45 md:bottom-25'
                             ]"
                         >
                             <div class="text-light-001 max-h-33 overflow-y-scroll gap-1 flex flex-col scrollbar-hide">
@@ -204,7 +204,7 @@
                         <div
                             :class="[
                                 show_player && is_playing ? 'translate-y-0 ' : 'translate-y-16 md:translate-y-0',
-                                'fixed bg-brand-950/90 backdrop-blur-sm w-full h-44 md:h-24 bottom-0 z-10 flex flex-col gap-2 transition-all md:rounded-t-2xl md:w-lg'
+                                'fixed bg-brand-950 w-full h-44 md:h-24 bottom-0 z-10 flex flex-col gap-2 transition-all md:rounded-t-2xl md:w-lg'
                             ]"
                         >
                             <div class="flex justify-between py-2 text-brand-300 px-4 items-center gap-2">
