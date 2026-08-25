@@ -36,6 +36,8 @@
                                         Install OpenGameArt App
                                     </DialogTitle>
 
+                                    <p class="text-muted">Works better on app.</p>
+
                                     <div class="mt-4 flex gap-4 text-brand-300 text-xs justify-center">
                                         <div class="flex flex-col items-center gap-2">
                                             <Icon icon="akar-icons:android-fill" class="size-5 flex-none text-brand-400 mt-0.5" />
@@ -64,11 +66,15 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="mt-5 sm:mt-6 gap-2 flex flex-col">
+                            <div class="mt-5 sm:mt-6 gap-2 flex flex-col ">
                                 <AppButton v-if="!isIOS" icon="memory:download" @click="handleInstall" :loading="installing">
                                     Install App
                                 </AppButton>
-                                <AppButton @click="closeModal" color="brand" icon="memory:close">Maybe Later</AppButton>
+                                <div class="flex gap-2 ">
+
+                                    <AppButton @click="closeModal" icon="pixelarticons:square-cursor" class="w-full">Maybe Later</AppButton>
+                                    <AppButton @click="dismissForever" icon="memory:close" class="w-full">No Thanks</AppButton>
+                                </div>
                             </div>
                         </DialogPanel>
                     </TransitionChild>
@@ -88,10 +94,15 @@ import { PWAInstaller } from '@/utils/pwa'
 const showModal = ref(false)
 const installing = ref(false)
 const isIOS = PWAInstaller.isIOS()
+const DISMISS_KEY = 'pwa-install-dismissed'
 
 onMounted(() => {
     // Initialize PWA installer
     PWAInstaller.init()
+
+    if (localStorage.getItem(DISMISS_KEY)) {
+        return
+    }
 
     // iOS Safari never fires beforeinstallprompt, show manual instructions instead
     if (isIOS && PWAInstaller.isSafari() && !PWAInstaller.isRunningAsPWA()) {
@@ -120,6 +131,11 @@ const handleInstall = async () => {
 }
 
 const closeModal = () => {
+    showModal.value = false
+}
+
+const dismissForever = () => {
+    localStorage.setItem(DISMISS_KEY, 'true')
     showModal.value = false
 }
 </script>
