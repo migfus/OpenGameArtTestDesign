@@ -9,10 +9,16 @@
     "orientation": "portrait-primary",
     "icons": [
         {
-            "src": "/images/icon.png",
-            "sizes": "16x16",
+            "src": "/images/icon-192.png",
+            "sizes": "192x192",
             "type": "image/png",
             "purpose": "any"
+        },
+        {
+            "src": "/images/icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
         }
     ],
     "categories": ["productivity", "social"],
@@ -24,8 +30,8 @@
             "url": "/collections",
             "icons": [
                 {
-                    "src": "/images/icon.png",
-                    "sizes": "16x16"
+                    "src": "/images/icon-192.png",
+                    "sizes": "192x192"
                 }
             ]
         },
@@ -36,8 +42,8 @@
             "url": "/arts",
             "icons": [
                 {
-                    "src": "/images/icon.png",
-                    "sizes": "16x16"
+                    "src": "/images/icon-192.png",
+                    "sizes": "192x192"
                 }
             ]
         },
@@ -48,8 +54,8 @@
             "url": "/forums",
             "icons": [
                 {
-                    "src": "/images/icon.png",
-                    "sizes": "16x16"
+                    "src": "/images/icon-192.png",
+                    "sizes": "192x192"
                 }
             ]
         }

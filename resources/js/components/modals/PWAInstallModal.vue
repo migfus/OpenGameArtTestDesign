@@ -29,30 +29,29 @@
                         >
                             <div>
                                 <div class="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-brand-950">
-                                    <Icon icon="memory:download" class="h-6 w-6 text-brand-300" aria-hidden="true" />
+                                    <img src="https://oga.migfus20.site/images/icon.png"/>
                                 </div>
                                 <div class="mt-3 text-center sm:mt-5">
                                     <DialogTitle as="h3" class="text-base font-semibold leading-6 text-brand-200">
                                         Install OpenGameArt App
                                     </DialogTitle>
-                                    <div class="mt-2">
-                                        <p class="text-sm text-brand-300">
-                                            Get instant access to collections, forums, and game art. Install the app for a better experience.
-                                        </p>
-                                    </div>
 
-                                    <div class="mt-4 flex flex-col gap-2 text-brand-300 text-xs">
-                                        <div class="flex items-start gap-2">
-                                            <Icon icon="memory:check-circle" class="size-5 flex-none text-brand-400 mt-0.5" />
-                                            <span>Works offline with your favorite collections</span>
+                                    <div class="mt-4 flex gap-4 text-brand-300 text-xs justify-center">
+                                        <div class="flex flex-col items-center gap-2">
+                                            <Icon icon="akar-icons:android-fill" class="size-5 flex-none text-brand-400 mt-0.5" />
+                                            <span>Android</span>
                                         </div>
-                                        <div class="flex items-start gap-2">
-                                            <Icon icon="memory:check-circle" class="size-5 flex-none text-brand-400 mt-0.5" />
-                                            <span>Access from home screen or dock</span>
+                                        <div class="flex flex-col items-center gap-2">
+                                            <Icon icon="ant-design:apple-filled" class="size-5 flex-none text-brand-400 mt-0.5" />
+                                            <span>iOS</span>
                                         </div>
-                                        <div class="flex items-start gap-2">
-                                            <Icon icon="memory:check-circle" class="size-5 flex-none text-brand-400 mt-0.5" />
-                                            <span>Lightning-fast loading experience</span>
+                                        <div class="flex flex-col items-center gap-2">
+                                            <Icon icon="ant-design:windows-filled" class="size-5 flex-none text-brand-400 mt-0.5" />
+                                            <span>Windows</span>
+                                        </div>
+                                        <div class="flex flex-col items-center gap-2">
+                                            <Icon icon="carbon:linux-alt" class="size-5 flex-none text-brand-400 mt-0.5" />
+                                            <span>Linux</span>
                                         </div>
                                     </div>
                                 </div>
@@ -61,7 +60,8 @@
                                 <AppButton icon="memory:download" @click="handleInstall" :loading="installing">
                                     Install App
                                 </AppButton>
-                                <AppButton @click="closeModal" color="brand">Maybe Later</AppButton>
+                                <AppButton @click="closeModal" color="brand" icon="memory:close">Maybe Later</AppButton>
+                                <AppButton @click="closeModal" color="brand" icon="memory:close">I'm good</AppButton>
                             </div>
                         </DialogPanel>
                     </TransitionChild>

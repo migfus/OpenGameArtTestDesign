@@ -1,6 +1,6 @@
 {
-  "_ArtCard-BH8ttoyB.js": {
-    "file": "assets/ArtCard-BH8ttoyB.js",
+  "_ArtCard-4zwPXrov.js": {
+    "file": "assets/ArtCard-4zwPXrov.js",
     "name": "ArtCard",
     "imports": [
       "__plugin-vue_export-helper-CIliP2JN.js",
@@ -48,7 +48,7 @@
     "isEntry": true
   },
   "resources/js/app.ts": {
-    "file": "assets/app-BhoDvdcX.js",
+    "file": "assets/app-CsFmk0xT.js",
     "name": "app",
     "src": "resources/js/app.ts",
     "isEntry": true,
@@ -69,7 +69,7 @@
     ]
   },
   "resources/js/pages/[...page].vue": {
-    "file": "assets/_...page_-BRVEUoVw.js",
+    "file": "assets/_...page_-CMf8jaKy.js",
     "name": "_...page_",
     "src": "resources/js/pages/[...page].vue",
     "isDynamicEntry": true,
@@ -86,7 +86,7 @@
     ]
   },
   "resources/js/pages/arts/[id].vue": {
-    "file": "assets/_id_-Btl1bXgY.js",
+    "file": "assets/_id_-VKYbiaG2.js",
     "name": "_id_",
     "src": "resources/js/pages/arts/[id].vue",
     "isDynamicEntry": true,
@@ -94,11 +94,11 @@
       "__plugin-vue_export-helper-CIliP2JN.js",
       "_DataTransition-Dy4CWRRo.js",
       "resources/js/app.ts",
-      "_ArtCard-BH8ttoyB.js"
+      "_ArtCard-4zwPXrov.js"
     ]
   },
   "resources/js/pages/arts/index.vue": {
-    "file": "assets/arts-BjdtrGrg.js",
+    "file": "assets/arts-eYGXvPKN.js",
     "name": "arts",
     "src": "resources/js/pages/arts/index.vue",
     "isDynamicEntry": true,
@@ -106,12 +106,12 @@
       "__plugin-vue_export-helper-CIliP2JN.js",
       "_DataTransition-Dy4CWRRo.js",
       "resources/js/app.ts",
-      "_ArtCard-BH8ttoyB.js",
+      "_ArtCard-4zwPXrov.js",
       "_ArtCardLoader-x0BM_Y2U.js"
     ]
   },
   "resources/js/pages/collections.vue": {
-    "file": "assets/collections-CJIDxRT4.js",
+    "file": "assets/collections-BK5PIIj7.js",
     "name": "collections",
     "src": "resources/js/pages/collections.vue",
     "isDynamicEntry": true,
@@ -140,7 +140,7 @@
     ]
   },
   "resources/js/pages/faqs.vue": {
-    "file": "assets/faqs-DhMTyu6r.js",
+    "file": "assets/faqs-CVEdsdYc.js",
     "name": "faqs",
     "src": "resources/js/pages/faqs.vue",
     "isDynamicEntry": true,
@@ -154,7 +154,7 @@
     ]
   },
   "resources/js/pages/index.vue": {
-    "file": "assets/pages-BhzkRKGR.js",
+    "file": "assets/pages-CM8wZFHP.js",
     "name": "pages",
     "src": "resources/js/pages/index.vue",
     "isDynamicEntry": true,
@@ -162,12 +162,12 @@
       "__plugin-vue_export-helper-CIliP2JN.js",
       "_DataTransition-Dy4CWRRo.js",
       "resources/js/app.ts",
-      "_ArtCard-BH8ttoyB.js",
+      "_ArtCard-4zwPXrov.js",
       "_ArtCardLoader-x0BM_Y2U.js"
     ]
   },
   "resources/js/pages/login.vue": {
-    "file": "assets/login-B4KLHdLu.js",
+    "file": "assets/login-CfDJucEL.js",
     "name": "login",
     "src": "resources/js/pages/login.vue",
     "isDynamicEntry": true,
