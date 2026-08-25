@@ -15,7 +15,7 @@
             </RouterLink> -->
                 <RouterLink
                     to="/"
-                    :class="['bg-brand-950 flex justify-center items-center rounded-xl border border-brand-900 size-10 hover:bg-dark-001 transition-all']"
+                    :class="['bg-card flex justify-center items-center rounded-xl border border-border size-10 hover:bg-dark-001 transition-all']"
                 >
                     <Icon icon="ic:baseline-plus" class="size-6 text-brand-200" />
                 </RouterLink>
@@ -25,14 +25,14 @@
                 <RouterLink
                     v-if="$authStore.token"
                     to="/"
-                    class="bg-brand-950/75 flex justify-center items-center rounded-xl border border-brand-900 backdrop-blur-lg size-10 fixed bottom-2 hover:bg-dark-001 transition-all"
+                    class="bg-card flex justify-center items-center rounded-xl border border-border backdrop-blur-lg size-10 fixed bottom-2 hover:bg-dark-001 transition-all"
                 >
                     <Icon icon="memory:apps" class="size-6 text-brand-200" />
                 </RouterLink>
                 <RouterLink
                     v-else
                     to="/login"
-                    class="bg-brand-950/75 flex justify-center items-center rounded-xl border border-brand-900 backdrop-blur-lg size-10 fixed bottom-2 hover:bg-dark-001 transition-all"
+                    class="bg-card flex justify-center items-center rounded-xl border border-border backdrop-blur-lg size-10 fixed bottom-2 hover:bg-dark-001 transition-all"
                 >
                     <Icon icon="memory:login" class="size-6 text-brand-200" />
                 </RouterLink>

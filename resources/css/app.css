@@ -39,6 +39,7 @@
     --color-brand-800: #486185;
     --color-brand-900: #3e516b;
     --color-brand-950: #293342;
+    --color-brand-980: #1b202a;
 
     /* DARK */
     --color-dark-001: #0f0f0f;
@@ -71,6 +72,45 @@
     --color-limed-spruce-800: #3a4a50;
     --color-limed-spruce-900: #344045;
     --color-limed-spruce-950: #1f292d;
+
+
+    /* Base */
+    --color-background: var(--color-dark-001);
+    --color-foreground: var(--color-brand-50);
+
+    /* Card / surfaces */
+    --color-card: var(--color-brand-980);
+    --color-card-foreground: var(--color-brand-200);
+
+    --color-popover: #202936;
+    --color-popover-foreground: var(--color-brand-200);
+
+    /* Primary */
+    --color-primary: var(--color-brand-400);
+    --color-primary-foreground: var(--color-brand-950);
+
+    /* Secondary */
+    --color-secondary: var(--color-brand-900);
+    --color-secondary-foreground: var(--color-brand-200);
+
+    /* Muted */
+    --color-muted: var(--color-brand-900);
+    --color-muted-foreground: var(--color-brand-500);
+
+    /* Accent */
+    --color-accent: var(--color-brand-800);
+    --color-accent-foreground: var(--color-brand-200);
+
+    /* Borders / inputs */
+    --color-border: var(--color-brand-950);
+    --color-input: var(--color-brand-800);
+
+    /* Destructive */
+    --color-destructive: #ef4444;
+    --color-destructive-foreground: var(--color-brand-50);
+
+    /* Focus */
+    --color-ring: var(--color-brand-400);
 }
 
 :root {

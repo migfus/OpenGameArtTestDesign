@@ -11,12 +11,14 @@
         </SideNavigation>
 
         <WarningModal />
+        <PWAInstallModal />
     </div>
 </template>
 
 <script setup lang="ts">
 import TopBanner from './components/header/TopBanner.vue'
 import WarningModal from './components/modals/WarningModal.vue'
+import PWAInstallModal from './components/modals/PWAInstallModal.vue'
 import SideNavigation from './components/navigations/SideNavigation.vue'
 import TopNavigation from './components/navigations/TopNavigation.vue'
 import NotiWind from './components/notifications/NotiWind.vue'

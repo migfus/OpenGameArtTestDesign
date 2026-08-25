@@ -1,0 +1,1 @@
+import{f as e,k as t,t as n}from"./_plugin-vue_export-helper-CIliP2JN.js";var r={};function i(n,r){return t(),e(`div`,null,`Account Settings`)}var a=n(r,[[`render`,i]]);export{a as default};

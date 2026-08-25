@@ -1,11 +1,11 @@
 {
-  "_ArtCard-CslE-EST.js": {
-    "file": "assets/ArtCard-CslE-EST.js",
+  "_ArtCard-BH8ttoyB.js": {
+    "file": "assets/ArtCard-BH8ttoyB.js",
     "name": "ArtCard",
     "imports": [
-      "_utils-BB6ZcU0W.js",
-      "__plugin-vue_export-helper-GyfHDU08.js",
-      "_DataTransition-fPkQjtz-.js"
+      "__plugin-vue_export-helper-CIliP2JN.js",
+      "_DataTransition-Dy4CWRRo.js",
+      "resources/js/app.ts"
     ],
     "css": [
       "assets/ArtCard-DNZ6ccCU.css"
@@ -15,65 +15,31 @@
     "file": "assets/ArtCard-DNZ6ccCU.css",
     "src": "_ArtCard-DNZ6ccCU.css"
   },
-  "_ArtCardLoader-m50TeUwp.js": {
-    "file": "assets/ArtCardLoader-m50TeUwp.js",
+  "_ArtCardLoader-x0BM_Y2U.js": {
+    "file": "assets/ArtCardLoader-x0BM_Y2U.js",
     "name": "ArtCardLoader",
     "imports": [
-      "__plugin-vue_export-helper-GyfHDU08.js",
-      "_DataTransition-fPkQjtz-.js"
+      "__plugin-vue_export-helper-CIliP2JN.js",
+      "_DataTransition-Dy4CWRRo.js"
     ]
   },
-  "_DataTransition-fPkQjtz-.js": {
-    "file": "assets/DataTransition-fPkQjtz-.js",
+  "_DataTransition-Dy4CWRRo.js": {
+    "file": "assets/DataTransition-Dy4CWRRo.js",
     "name": "DataTransition",
     "imports": [
-      "__plugin-vue_export-helper-GyfHDU08.js"
+      "__plugin-vue_export-helper-CIliP2JN.js"
     ]
   },
-  "__plugin-vue_export-helper-GyfHDU08.js": {
-    "file": "assets/_plugin-vue_export-helper-GyfHDU08.js",
+  "__plugin-vue_export-helper-CIliP2JN.js": {
+    "file": "assets/_plugin-vue_export-helper-CIliP2JN.js",
     "name": "_plugin-vue_export-helper"
-  },
-  "_dist-CBw2td-a.js": {
-    "file": "assets/dist-CBw2td-a.js",
-    "name": "dist",
-    "imports": [
-      "__plugin-vue_export-helper-GyfHDU08.js"
-    ]
-  },
-  "_index.esm-J3Aj1DOe.js": {
-    "file": "assets/index.esm-J3Aj1DOe.js",
-    "name": "index.esm",
-    "imports": [
-      "__plugin-vue_export-helper-GyfHDU08.js",
-      "_DataTransition-fPkQjtz-.js"
-    ]
-  },
-  "_pinia-BnaYtrvh.js": {
-    "file": "assets/pinia-BnaYtrvh.js",
-    "name": "pinia",
-    "imports": [
-      "_utils-BB6ZcU0W.js",
-      "__plugin-vue_export-helper-GyfHDU08.js"
-    ]
-  },
-  "_useApi-CROJJdhE-oxuDbaWS.js": {
-    "file": "assets/useApi-CROJJdhE-oxuDbaWS.js",
-    "name": "useApi-CROJJdhE",
-    "imports": [
-      "__plugin-vue_export-helper-GyfHDU08.js"
-    ]
-  },
-  "_utils-BB6ZcU0W.js": {
-    "file": "assets/utils-BB6ZcU0W.js",
-    "name": "utils"
   },
   "public/images/building.png": {
     "file": "assets/building-DISqM95Z.png",
     "src": "public/images/building.png"
   },
   "resources/css/app.css": {
-    "file": "assets/app-DYCxk4rI.css",
+    "file": "assets/app-DBh4xzmv.css",
     "name": "app",
     "names": [
       "app.css"
@@ -82,18 +48,13 @@
     "isEntry": true
   },
   "resources/js/app.ts": {
-    "file": "assets/app--_k7ltfH.js",
+    "file": "assets/app-BhoDvdcX.js",
     "name": "app",
     "src": "resources/js/app.ts",
     "isEntry": true,
     "imports": [
-      "_utils-BB6ZcU0W.js",
-      "__plugin-vue_export-helper-GyfHDU08.js",
-      "_DataTransition-fPkQjtz-.js",
-      "_pinia-BnaYtrvh.js",
-      "_index.esm-J3Aj1DOe.js",
-      "_dist-CBw2td-a.js",
-      "_useApi-CROJJdhE-oxuDbaWS.js"
+      "__plugin-vue_export-helper-CIliP2JN.js",
+      "_DataTransition-Dy4CWRRo.js"
     ],
     "dynamicImports": [
       "resources/js/pages/index.vue",
@@ -108,15 +69,14 @@
     ]
   },
   "resources/js/pages/[...page].vue": {
-    "file": "assets/_...page_-B8_h5vGz.js",
+    "file": "assets/_...page_-BRVEUoVw.js",
     "name": "_...page_",
     "src": "resources/js/pages/[...page].vue",
     "isDynamicEntry": true,
     "imports": [
-      "_utils-BB6ZcU0W.js",
-      "__plugin-vue_export-helper-GyfHDU08.js",
-      "_DataTransition-fPkQjtz-.js",
-      "_useApi-CROJJdhE-oxuDbaWS.js"
+      "__plugin-vue_export-helper-CIliP2JN.js",
+      "_DataTransition-Dy4CWRRo.js",
+      "resources/js/app.ts"
     ],
     "css": [
       "assets/_..-Os0L-3Kw.css"
@@ -126,76 +86,67 @@
     ]
   },
   "resources/js/pages/arts/[id].vue": {
-    "file": "assets/_id_-c0CpKCJ4.js",
+    "file": "assets/_id_-Btl1bXgY.js",
     "name": "_id_",
     "src": "resources/js/pages/arts/[id].vue",
     "isDynamicEntry": true,
     "imports": [
-      "_utils-BB6ZcU0W.js",
-      "__plugin-vue_export-helper-GyfHDU08.js",
-      "_DataTransition-fPkQjtz-.js",
-      "_pinia-BnaYtrvh.js",
-      "_useApi-CROJJdhE-oxuDbaWS.js",
+      "__plugin-vue_export-helper-CIliP2JN.js",
+      "_DataTransition-Dy4CWRRo.js",
       "resources/js/app.ts",
-      "_ArtCard-CslE-EST.js"
+      "_ArtCard-BH8ttoyB.js"
     ]
   },
   "resources/js/pages/arts/index.vue": {
-    "file": "assets/arts-DN748v7C.js",
+    "file": "assets/arts-BjdtrGrg.js",
     "name": "arts",
     "src": "resources/js/pages/arts/index.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_utils-BB6ZcU0W.js",
-      "__plugin-vue_export-helper-GyfHDU08.js",
-      "_DataTransition-fPkQjtz-.js",
-      "_pinia-BnaYtrvh.js",
-      "_useApi-CROJJdhE-oxuDbaWS.js",
+      "__plugin-vue_export-helper-CIliP2JN.js",
+      "_DataTransition-Dy4CWRRo.js",
       "resources/js/app.ts",
-      "_ArtCard-CslE-EST.js",
-      "_ArtCardLoader-m50TeUwp.js"
+      "_ArtCard-BH8ttoyB.js",
+      "_ArtCardLoader-x0BM_Y2U.js"
     ]
   },
   "resources/js/pages/collections.vue": {
-    "file": "assets/collections-UaNm8TbI.js",
+    "file": "assets/collections-CJIDxRT4.js",
     "name": "collections",
     "src": "resources/js/pages/collections.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_utils-BB6ZcU0W.js",
-      "__plugin-vue_export-helper-GyfHDU08.js",
-      "_DataTransition-fPkQjtz-.js",
-      "_pinia-BnaYtrvh.js",
-      "_dist-CBw2td-a.js",
+      "__plugin-vue_export-helper-CIliP2JN.js",
+      "_DataTransition-Dy4CWRRo.js",
       "resources/js/app.ts"
     ]
   },
   "resources/js/pages/dashboard/account-settings.vue": {
-    "file": "assets/account-settings-B4dnjkc4.js",
+    "file": "assets/account-settings-CMxJM_6r.js",
     "name": "account-settings",
     "src": "resources/js/pages/dashboard/account-settings.vue",
     "isDynamicEntry": true,
     "imports": [
-      "__plugin-vue_export-helper-GyfHDU08.js"
+      "__plugin-vue_export-helper-CIliP2JN.js"
     ]
   },
   "resources/js/pages/dashboard/index.vue": {
-    "file": "assets/dashboard-BbKjpCMj.js",
+    "file": "assets/dashboard-FocV3esz.js",
     "name": "dashboard",
     "src": "resources/js/pages/dashboard/index.vue",
     "isDynamicEntry": true,
     "imports": [
-      "__plugin-vue_export-helper-GyfHDU08.js"
+      "__plugin-vue_export-helper-CIliP2JN.js"
     ]
   },
   "resources/js/pages/faqs.vue": {
-    "file": "assets/faqs-WUURDeRa.js",
+    "file": "assets/faqs-DhMTyu6r.js",
     "name": "faqs",
     "src": "resources/js/pages/faqs.vue",
     "isDynamicEntry": true,
     "imports": [
-      "__plugin-vue_export-helper-GyfHDU08.js",
-      "_DataTransition-fPkQjtz-.js",
+      "__plugin-vue_export-helper-CIliP2JN.js",
+      "_DataTransition-Dy4CWRRo.js",
       "resources/js/app.ts"
     ],
     "css": [
@@ -203,31 +154,26 @@
     ]
   },
   "resources/js/pages/index.vue": {
-    "file": "assets/pages-FNlbjRZE.js",
+    "file": "assets/pages-BhzkRKGR.js",
     "name": "pages",
     "src": "resources/js/pages/index.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_utils-BB6ZcU0W.js",
-      "__plugin-vue_export-helper-GyfHDU08.js",
-      "_DataTransition-fPkQjtz-.js",
-      "_pinia-BnaYtrvh.js",
-      "_dist-CBw2td-a.js",
+      "__plugin-vue_export-helper-CIliP2JN.js",
+      "_DataTransition-Dy4CWRRo.js",
       "resources/js/app.ts",
-      "_ArtCard-CslE-EST.js",
-      "_ArtCardLoader-m50TeUwp.js"
+      "_ArtCard-BH8ttoyB.js",
+      "_ArtCardLoader-x0BM_Y2U.js"
     ]
   },
   "resources/js/pages/login.vue": {
-    "file": "assets/login-DVm6Lutl.js",
+    "file": "assets/login-B4KLHdLu.js",
     "name": "login",
     "src": "resources/js/pages/login.vue",
     "isDynamicEntry": true,
     "imports": [
-      "__plugin-vue_export-helper-GyfHDU08.js",
-      "_DataTransition-fPkQjtz-.js",
-      "_pinia-BnaYtrvh.js",
-      "_dist-CBw2td-a.js",
+      "__plugin-vue_export-helper-CIliP2JN.js",
+      "_DataTransition-Dy4CWRRo.js",
       "resources/js/app.ts"
     ],
     "css": [

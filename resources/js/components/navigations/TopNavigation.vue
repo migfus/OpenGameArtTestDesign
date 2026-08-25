@@ -1,7 +1,7 @@
 <template>
     <div
         :class="[
-            'bg-brand-950 px-6 py-2 font-semibold flex justify-between gap-2 text-brand-200 h-18 border-b border-brand-900 overflow-visible transition-all duration-500'
+            'bg-card px-6 py-2 font-semibold flex justify-between gap-2 text-brand-200 h-18 border-b border-border overflow-visible transition-all duration-500'
         ]"
         :style="{ height: `${$top_navigation_hidden ? '0px' : '70px'}` }"
     >

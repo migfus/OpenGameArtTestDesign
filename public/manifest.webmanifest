@@ -1,0 +1,57 @@
+{
+    "name": "OpenGameArt",
+    "short_name": "OGA",
+    "description": "Open Game Art Community Platform - Share and discover game art assets",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#000000",
+    "theme_color": "#000000",
+    "orientation": "portrait-primary",
+    "icons": [
+        {
+            "src": "/images/icon.png",
+            "sizes": "16x16",
+            "type": "image/png",
+            "purpose": "any"
+        }
+    ],
+    "categories": ["productivity", "social"],
+    "shortcuts": [
+        {
+            "name": "Collections",
+            "short_name": "Collections",
+            "description": "Browse collections",
+            "url": "/collections",
+            "icons": [
+                {
+                    "src": "/images/icon.png",
+                    "sizes": "16x16"
+                }
+            ]
+        },
+        {
+            "name": "Explore",
+            "short_name": "Explore",
+            "description": "Explore game art",
+            "url": "/arts",
+            "icons": [
+                {
+                    "src": "/images/icon.png",
+                    "sizes": "16x16"
+                }
+            ]
+        },
+        {
+            "name": "Forums",
+            "short_name": "Forums",
+            "description": "Community forums",
+            "url": "/forums",
+            "icons": [
+                {
+                    "src": "/images/icon.png",
+                    "sizes": "16x16"
+                }
+            ]
+        }
+    ]
+}
