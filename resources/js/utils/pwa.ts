@@ -2,8 +2,8 @@
 
 // Type definition for BeforeInstallPromptEvent
 interface BeforeInstallPromptEvent extends Event {
-  prompt(): Promise<void>
-  userChoice: Promise<{ outcome: 'accepted' | 'dismissed' }>
+    prompt(): Promise<void>
+    userChoice: Promise<{ outcome: 'accepted' | 'dismissed' }>
 }
 
 export const PWAInstaller = {
@@ -57,6 +57,16 @@ export const PWAInstaller = {
     return window.matchMedia('(display-mode: standalone)').matches ||
            (window.navigator as any).standalone === true ||
            document.referrer.includes('android-app://')
+  },
+
+  // iOS Safari never fires beforeinstallprompt - detect it to show manual instructions
+  isIOS() {
+    return /iphone|ipad|ipod/i.test(window.navigator.userAgent) && !(window as any).MSStream
+  },
+
+  isSafari() {
+    const ua = window.navigator.userAgent
+    return /^((?!chrome|android|crios|fxios).)*safari/i.test(ua)
   }
 }
 

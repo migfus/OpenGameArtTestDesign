@@ -54,14 +54,21 @@
                                             <span>Linux</span>
                                         </div>
                                     </div>
+
+                                    <!-- iOS Safari has no install prompt API, show manual steps -->
+                                    <div v-if="isIOS" class="mt-4 text-left bg-brand-950 rounded-xl p-3 text-xs text-brand-300 flex flex-col gap-1">
+                                        <p class="font-semibold text-brand-200">To install on iOS:</p>
+                                        <p>1. Tap the <Icon icon="ant-design:apple-filled" class="inline size-3.5" /> Share button</p>
+                                        <p>2. Select "Add to Home Screen"</p>
+                                        <p>3. Tap "Add" to confirm</p>
+                                    </div>
                                 </div>
                             </div>
                             <div class="mt-5 sm:mt-6 gap-2 flex flex-col">
-                                <AppButton icon="memory:download" @click="handleInstall" :loading="installing">
+                                <AppButton v-if="!isIOS" icon="memory:download" @click="handleInstall" :loading="installing">
                                     Install App
                                 </AppButton>
                                 <AppButton @click="closeModal" color="brand" icon="memory:close">Maybe Later</AppButton>
-                                <AppButton @click="closeModal" color="brand" icon="memory:close">I'm good</AppButton>
                             </div>
                         </DialogPanel>
                     </TransitionChild>
@@ -80,10 +87,16 @@ import { PWAInstaller } from '@/utils/pwa'
 
 const showModal = ref(false)
 const installing = ref(false)
+const isIOS = PWAInstaller.isIOS()
 
 onMounted(() => {
     // Initialize PWA installer
     PWAInstaller.init()
+
+    // iOS Safari never fires beforeinstallprompt, show manual instructions instead
+    if (isIOS && PWAInstaller.isSafari() && !PWAInstaller.isRunningAsPWA()) {
+        showModal.value = true
+    }
 
     // Listen for installation prompt availability
     window.addEventListener('pwa-prompt-available', () => {
